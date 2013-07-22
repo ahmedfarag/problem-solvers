@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
 */
+
+.accepted_color{
+	color: green;
+}
+
+.wrong_answer_color{
+	color: red;
+}

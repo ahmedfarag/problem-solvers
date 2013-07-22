@@ -1,2 +1,9 @@
-<h1>Problems#show</h1>
-<p>Find me in app/views/problems/show.html.erb</p>
+<h1><%= @problem.name %></h1>
+<h2><%= link_to "Problem link", @problem.link, title:"external link, this will open a new tab", target:"new" %> <%= link_to( image_tag(asset_path("external-link-small.png"), style:"margin-left:14px;width:30px;height:30px;"), @problem.link, title:"external link, this will open a new tab" , target:"new")%></h2>
+
+<!-- <div style="float:left"><iframe class="problem_iframe" id='embedded' src="<%="#{@problem.link}"%>" /></div> -->
+
+<div class="explanations_container">
+<h3>Explanations:</h3>
+<%= @problem.explanations.count > 0 ? (render @problem.explanations) : "No Explanations for this problem, be the first ;)" %>
+</div>

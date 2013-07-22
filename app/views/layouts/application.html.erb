@@ -3,11 +3,25 @@
   <head>
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag    "google-code-prettify/run_prettify.js"%>
     <%= javascript_include_tag "application" %>
+
+    
+    <!-- https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js -->
+
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>    
   </head>
   <body>
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1380429232180455";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
     <%= render 'layouts/header' %>
     <div class="container">
       <% flash.each do |key, value| %>

@@ -1,0 +1,35 @@
+<div class="explanation">
+
+<a href="<%= user_path(explanation.user) %>">
+  <%= gravatar_for explanation.user, size: 50 %>
+</a>
+<h1>
+  <%= link_to explanation.user.name, user_path(explanation.user) %>
+</h1>
+<!-- <span>
+  <%= pluralize(explanation.user.microposts.count, "micropost") %>
+</span> -->
+<h3><%= link_to  (explanation.content.first 20) + "...", explanation_path(explanation) %></h3>
+
+<div  id="rateMe">
+    <a class="not-colored" id="avg_<%=explanation.id%>_1"></a>
+    <a class="not-colored" id="avg_<%=explanation.id%>_2"></a>
+    <a class="not-colored" id="avg_<%=explanation.id%>_3"></a>
+    <a class="not-colored" id="avg_<%=explanation.id%>_4"></a>
+    <a class="not-colored" id="avg_<%=explanation.id%>_5"></a>
+</div>
+
+</div>
+
+
+
+<script type="text/javascript" language="javascript" >
+	exp_id = "avg_<%=explanation.id%>_<%= explanation.average_ratings %>";
+
+	my_this = document.getElementById(exp_id);
+
+	preSet["avg_<%=explanation.id%>_"] = my_this;
+	
+	off(my_this);
+</script>
+

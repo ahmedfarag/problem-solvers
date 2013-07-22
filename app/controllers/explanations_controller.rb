@@ -1,5 +1,6 @@
 class ExplanationsController < ApplicationController
   def index
+    @explanations = Explanation.all
   end
 
   def show

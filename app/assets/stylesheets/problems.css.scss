@@ -1,3 +1,15 @@
 // Place all the styles related to the Problems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#embedded{
+	width: 100%;
+	height: 700px;
+	float: left;
+	border: none;
+}
+
+.explanations_container{
+	float:left;
+	width:100%;
+}

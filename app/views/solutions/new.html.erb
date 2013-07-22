@@ -1,2 +1,25 @@
-<h1>Solutions#new</h1>
-<p>Find me in app/views/solutions/new.html.erb</p>
+
+<%= provide(:title, 'Add a solution') %>
+<h1>Add a solution</h1>
+
+
+<%= form_for(@solution) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+
+  <%= f.label :code %>
+  <%= f.text_area :code , id:"code_area" %>
+
+  <%= f.label :problem_id, "Problem" %>
+  <%= f.select :problem_id, options_from_collection_for_select(@problems, "id", "name") %>
+
+  <%= f.label :language_id, "Language" %>
+  <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"), onchange:"language_changed()" %>
+  
+  <div style="width:100%;height:30px;">
+  	<%= f.label :accepted, "This solution got accepted?", style:"width:200px;float:left;" %>
+  	<%= f.check_box :accepted, style:"float:left;" %>
+  </div>
+  
+  <%= f.submit "Save Solution", :class => "btn btn-large btn-primary green", id: "submitSol" %>
+<% end %>

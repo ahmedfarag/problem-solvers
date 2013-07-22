@@ -1,2 +1,65 @@
-<h1>Solutions#show</h1>
-<p>Find me in app/views/solutions/show.html.erb</p>
+<h1><%= link_to "#{@solution.user.name}", user_path(@solution.user) %></h1>
+<h2><%= link_to "#{@solution.problem.name}", @solution.problem.link %></h2>
+
+
+<h3><%= @solution.language.name %></h3>
+<% if @solution.accepted %>
+<p class="accepted_color">This solution got accepted from the judge</p>
+<% else %>
+<p class="wrong_answer_color">This solution got a wrong answer reply from the judge</p>
+<% end %>
+<div  id="rateMe">
+    <a class="not-colored" id="avg_1"></a>
+    <a class="not-colored" id="avg_2"></a>
+    <a class="not-colored" id="avg_3"></a>
+    <a class="not-colored" id="avg_4"></a>
+    <a class="not-colored" id="avg_5"></a>
+</div>
+<span  id="reviews_cnt" style="line-height:25px;margin-left:6px;"></span>
+
+<pre style="margin-top:10px;" class="prettyprint lang-<%= @solution.language.name.sub("++","pp").downcase %>">
+  <%= @solution.code %>
+</pre>
+
+
+
+<p>Your rating: </p>
+<div id="rateMe" title="Rate Me...">
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
+</div>
+
+<div class="fb-comments" data-href="<%=solution_path(@solution)%>" data-width="900px" data-num-posts="10"></div>
+
+
+<%= form_for(@solution.reviews.build(user:current_user),remote: true, :html => {id: "solution_rating_form_#{@solution.id}", style:"margin-bottom:0px;"}) do |f| %>
+  <div><%= f.hidden_field :reviewable_id %><%= f.hidden_field :reviewable_type %><%= f.hidden_field :user_id %><%= f.hidden_field :stars, id:"solution_rating_#{@solution.id}" %></div>
+
+<% end %>
+
+<% if @solution.reviews.exists?(user_id: current_user.id) %>
+		<script type="text/javascript" language="javascript" >
+			sol_id = "<%= @solution.id %>_<%= @solution.reviews.find_by_user_id(current_user.id).stars %>";
+			my_this = document.getElementById(sol_id);
+			preSet["<%= @solution.id %>_"] = my_this;
+			off(my_this);
+
+		</script>
+	<% end %>	
+
+
+<script type="text/javascript" language="javascript" >
+	$("#reviews_cnt").html("by <%= pluralize @solution.reviews.count, 'user' %>" );
+	sol_id = "avg_<%= @solution.average_ratings %>";
+
+	my_this = document.getElementById(sol_id);
+
+	preSet["avg_"] = my_this;
+	
+	off(my_this);
+</script>
+
+

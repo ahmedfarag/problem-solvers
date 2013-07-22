@@ -1,5 +1,6 @@
 class OnlineJudgesController < ApplicationController
   def index
+    @ojs = OnlineJudge.all
   end
 
   def show

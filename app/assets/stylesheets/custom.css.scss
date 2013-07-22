@@ -84,6 +84,9 @@ p {
 /* footer */
 
 footer {
+  clear:both;
+  width:100%;
+  float:left;
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
@@ -242,4 +245,19 @@ aside {
   .gravatar {
     margin: 1px 1px;
   }
+}
+
+
+.accepted_color{
+  color: green;
+}
+
+.wrong_answer_color{
+  color: red;
+}
+
+.circular{
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 }

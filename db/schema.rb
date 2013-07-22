@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716160108) do
+ActiveRecord::Schema.define(:version => 20130721154616) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130716160108) do
     t.string   "link"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "logo"
   end
 
   create_table "problems", :force => true do |t|
@@ -94,7 +95,6 @@ ActiveRecord::Schema.define(:version => 20130716160108) do
 
   create_table "reviews", :force => true do |t|
     t.integer  "stars"
-    t.text     "content"
     t.integer  "user_id"
     t.integer  "reviewable_id"
     t.string   "reviewable_type"

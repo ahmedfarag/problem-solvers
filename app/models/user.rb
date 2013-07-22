@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
   end
+
+  def post(post)
+    microposts.create(content: post)
+  end
   
   private
     

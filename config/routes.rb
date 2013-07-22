@@ -11,17 +11,7 @@ SampleApp::Application.routes.draw do
 
   get "comments/update"
 
-  get "reviews/show"
 
-  get "reviews/new"
-
-  get "reviews/create"
-
-  get "reviews/destroy"
-
-  get "reviews/edit"
-
-  get "reviews/update"
 
   get "languages/index"
 
@@ -41,19 +31,7 @@ SampleApp::Application.routes.draw do
 
   get "online_judges/destroy"
 
-  get "explanations/index"
-
-  get "explanations/show"
-
-  get "explanations/new"
-
-  get "explanations/create"
-
-  get "explanations/destroy"
-
-  get "explanations/edit"
-
-  get "explanations/update"
+  
 
   get "hints/new"
 
@@ -67,27 +45,8 @@ SampleApp::Application.routes.draw do
 
   get "solutions/index"
 
-  get "solutions/show"
 
-  get "solutions/new"
 
-  get "solutions/create"
-
-  get "solutions/destroy"
-
-  get "solutions/edit"
-
-  get "solutions/update"
-
-  get "problems/index"
-
-  get "problems/show"
-
-  get "problems/new"
-
-  get "problems/create"
-
-  get "problems/destroy"
 
   resources :users do
     member do
@@ -98,6 +57,10 @@ SampleApp::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
+  resources :problems, only: [:show]
+  resources :solutions, only: [:new, :show, :create]
+  resources :reviews, only: [:create]
+  resources :explanations, only: [:index, :show, :create, :new]
   
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

@@ -4,6 +4,19 @@ class Explanation < ActiveRecord::Base
 
   has_many :reviews, as: :reviewable
   has_many :comments, as: :commentable
+
+   def average_ratings
+	sum = 0
+	reviews.each do |rat|
+		sum += rat.stars.to_i
+	end
+
+	avg = 0
+	n = reviews.count
+	avg = (sum/n.to_f).round if(n != 0)
+	avg
+  end
+  
 end
 # == Schema Information
 #
