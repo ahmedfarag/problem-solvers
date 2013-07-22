@@ -15,9 +15,3 @@
 //= require bootstrap
 //= require_tree .
 
-function language_changed()
-{
-	alert("Asda")
-	myTextArea = $("#code_area");
-	var myCodeMirror = CodeMirror.fromTextArea(myTextArea);
-}
