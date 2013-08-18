@@ -22,32 +22,35 @@
 </pre>
 
 
-
-<p style="float:left;clear:both;">Your rating: </p>
-<div style="float:left;clear:none;" id="rateMe" title="Rate Me...">
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
-</div>
-<div class="fb-comments" data-href="<%=solution_path(@solution)%>" data-width="940px" data-num-posts="10"></div>
-
-
-<%= form_for(@solution.reviews.build(user:current_user),remote: true, :html => {id: "solution_rating_form_#{@solution.id}", style:"margin-bottom:0px;"}) do |f| %>
-  <div><%= f.hidden_field :reviewable_id %><%= f.hidden_field :reviewable_type %><%= f.hidden_field :user_id %><%= f.hidden_field :stars, id:"solution_rating_#{@solution.id}" %></div>
-
+<% if signed_in? %>
+	<p style="float:left;clear:both;">Your rating: </p>
+	<div style="float:left;clear:none;" id="rateMe" title="Rate Me...">
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @solution.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	</div>
 <% end %>
 
-<% if @solution.reviews.exists?(user_id: current_user.id) %>
-		<script type="text/javascript" language="javascript" >
-			sol_id = "<%= @solution.id %>_<%= @solution.reviews.find_by_user_id(current_user.id).stars %>";
-			my_this = document.getElementById(sol_id);
-			preSet["<%= @solution.id %>_"] = my_this;
-			off(my_this);
+<div class="fb-comments" data-href="<%=solution_path(@solution)%>" data-width="940px" data-num-posts="10"></div>
 
-		</script>
+<% if signed_in? %>
+	<%= form_for(@solution.reviews.build(user:current_user),remote: true, :html => {id: "rating_form_#{@solution.id}", style:"margin-bottom:0px;"}) do |f| %>
+	  <div><%= f.hidden_field :reviewable_id %><%= f.hidden_field :reviewable_type %><%= f.hidden_field :user_id %><%= f.hidden_field :stars, id:"rating_#{@solution.id}" %></div>
+
+	<% end %>
+
+	<% if @solution.reviews.exists?(user_id: current_user.id) %>
+			<script type="text/javascript" language="javascript" >
+				sol_id = "<%= @solution.id %>_<%= @solution.reviews.find_by_user_id(current_user.id).stars %>";
+				my_this = document.getElementById(sol_id);
+				preSet["<%= @solution.id %>_"] = my_this;
+				off(my_this);
+
+			</script>
 	<% end %>	
+<% end %>		
 
 <% if  @solution.average_ratings > 0 %>
 <script type="text/javascript" language="javascript" >

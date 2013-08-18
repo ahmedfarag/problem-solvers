@@ -10,30 +10,25 @@
 	  <%= pluralize(hint.user.microposts.count, "micropost") %>
 	</span> -->
 	<h2><%= hint.title %></h2>
-	<div id="rateMe" title="Rate Me...">
-    <a class="not-colored" onclick="rateIt(this)" id="<%=hint.id%>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%=hint.id%>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%=hint.id%>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%=hint.id%>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%=hint.id%>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	<div  id="rateMe">
+		<a class="not-colored" id="avg_hint_<%=hint.id%>_1"></a>
+	    <a class="not-colored" id="avg_hint_<%=hint.id%>_2"></a>
+	    <a class="not-colored" id="avg_hint_<%=hint.id%>_3"></a>
+	    <a class="not-colored" id="avg_hint_<%=hint.id%>_4"></a>
+	    <a class="not-colored" id="avg_hint_<%=hint.id%>_5"></a>
 	</div>
-</div>
 <hr class="special_hr"/>
-
-<%= form_for(hint.reviews.build(user:current_user),remote: true, :html => {id: "solution_rating_form_#{hint.id}", style:"margin-bottom:0px;"}) do |f| %>
-  <div><%= f.hidden_field :reviewable_id %><%= f.hidden_field :reviewable_type %><%= f.hidden_field :user_id %><%= f.hidden_field :stars, id:"solution_rating_#{hint.id}" %></div>
-
-<% end %>
+</div>
 
 <% if hint.average_ratings > 0 %>
-<script type="text/javascript" language="javascript" >
-	hint_id = "<%=hint.id%>_<%= hint.average_ratings %>";
-	// alert(hint_id);
-	my_this = document.getElementById(hint_id);
+	<script type="text/javascript" language="javascript" >
+		hint_id = "avg_hint_<%=hint.id%>_<%= hint.average_ratings %>";
+		// alert(hint_id);
+		my_this = document.getElementById(hint_id);
 
-	preSet["<%=hint.id%>_"] = my_this;
-	
-	off(my_this);
-</script>
+		preSet["avg_hint_<%=hint.id%>_"] = my_this;
+		
+		off(my_this);
+	</script>
 <% end %>
 

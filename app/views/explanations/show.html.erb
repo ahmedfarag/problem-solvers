@@ -11,12 +11,48 @@
 <div style="float:left;clear:none;">
 <%= @explanation.content.html_safe %>
 </div>
-<p style="float:left;clear:both;">Your rating: </p>
-<div style="float:left;clear:none;" id="rateMe" title="Rate Me...">
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
-</div>
+
+
+<% if signed_in? %>
+    <p style="float:left;clear:both;">Your rating: </p>
+    <div style="float:left;clear:none;" id="rateMe" title="Rate Me...">
+        <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+        <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+        <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+        <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+        <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    </div>
+<% end %>
 <div class="fb-comments" data-href="<%=explanation_path(@explanation)%>" data-width="940px" data-num-posts="10"></div>
+
+
+<% if signed_in? %>
+    <%= form_for(@explanation.reviews.build(user:current_user),remote: true, :html => {id: "rating_form_#{@explanation.id}", style:"margin-bottom:0px;"}) do |f| %>
+      <div><%= f.hidden_field :reviewable_id %><%= f.hidden_field :reviewable_type %><%= f.hidden_field :user_id %><%= f.hidden_field :stars, id:"rating_#{@explanation.id}" %></div>
+
+    <% end %>
+
+    <% if @explanation.reviews.exists?(user_id: current_user.id) %>
+            <script type="text/javascript" language="javascript" >
+                sol_id = "<%= @explanation.id %>_<%= @explanation.reviews.find_by_user_id(current_user.id).stars %>";
+                my_this = document.getElementById(sol_id);
+                preSet["<%= @explanation.id %>_"] = my_this;
+                off(my_this);
+
+            </script>
+    <% end %>   
+<% end %>
+
+<% if  @explanation.average_ratings > 0 %>
+<script type="text/javascript" language="javascript" >
+    $("#reviews_cnt").html("by <%= pluralize @explanation.reviews.count, 'user' %>" );
+    sol_id = "avg_<%= @explanation.average_ratings %>";
+
+    my_this = document.getElementById(sol_id);
+
+    preSet["avg_"] = my_this;
+    
+    off(my_this);
+</script>
+
+<% end %>

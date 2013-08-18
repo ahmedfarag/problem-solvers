@@ -13,32 +13,34 @@
 <h3 style="float:left;clear:both;"><%= @hint.title %></h3>
 
 <p style="float:left;clear:both;"><%= @hint.content %></p>
-
-<p style="float:left;clear:both;">Your rating: </p>
-<div style="float:left;clear:none;" id="rateMe" title="Rate Me...">
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
-    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
-</div>
+<% if signed_in? %>
+	<p style="float:left;clear:both;">Your rating: </p>
+	<div style="float:left;clear:none;" id="rateMe" title="Rate Me...">
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
+	</div>
+<% end %>	
 <div class="fb-comments" data-href="<%=hint_path(@hint)%>" data-width="940px" data-num-posts="10"></div>
 
+<% if signed_in? %>
+	<%= form_for(@hint.reviews.build(user:current_user),remote: true, :html => {id: "rating_form_#{@hint.id}", style:"margin-bottom:0px;"}) do |f| %>
+	  <div><%= f.hidden_field :reviewable_id %><%= f.hidden_field :reviewable_type %><%= f.hidden_field :user_id %><%= f.hidden_field :stars, id:"rating_#{@hint.id}" %></div>
 
-<%= form_for(@hint.reviews.build(user:current_user),remote: true, :html => {id: "hint_rating_form_#{@hint.id}", style:"margin-bottom:0px;"}) do |f| %>
-  <div><%= f.hidden_field :reviewable_id %><%= f.hidden_field :reviewable_type %><%= f.hidden_field :user_id %><%= f.hidden_field :stars, id:"hint_rating_#{@hint.id}" %></div>
+	<% end %>
 
-<% end %>
+	<% if @hint.reviews.exists?(user_id: current_user.id) %>
+			<script type="text/javascript" language="javascript" >
+				sol_id = "<%= @hint.id %>_<%= @hint.reviews.find_by_user_id(current_user.id).stars %>";
+				my_this = document.getElementById(sol_id);
+				preSet["<%= @hint.id %>_"] = my_this;
+				off(my_this);
 
-<% if @hint.reviews.exists?(user_id: current_user.id) %>
-		<script type="text/javascript" language="javascript" >
-			sol_id = "<%= @hint.id %>_<%= @hint.reviews.find_by_user_id(current_user.id).stars %>";
-			my_this = document.getElementById(sol_id);
-			preSet["<%= @hint.id %>_"] = my_this;
-			off(my_this);
-
-		</script>
+			</script>
 	<% end %>	
+<% end %>
 
 <% if  @hint.average_ratings > 0 %>
 <script type="text/javascript" language="javascript" >

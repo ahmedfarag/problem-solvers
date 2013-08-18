@@ -65,13 +65,13 @@ function rateIt(me){
 
 // Send the rating information somewhere using Ajax or something like that.
 function sendRate(sel){
-	sol_rating = sel.id[sel.id.length - 1];
-	sol = sel.id.substr(0, sel.id.length - 2);
+	item_rating = sel.id[sel.id.length - 1];
+	item = sel.id.substr(0, sel.id.length - 2);
 	
-	$("#solution_rating_" + sol).val(sol_rating);
+	$("#rating_" + item).val(item_rating);
 	// alert("hey");
 	// $("#submit_review").css('display', 'block');
-	$("#solution_rating_form_" + sol).submit();
+	$("#rating_form_" + item).submit();
 	// alert("#solution_rating_form_" + sol);
 	// alert("Your rating was: "+sel.title);
 }
