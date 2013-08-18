@@ -72,6 +72,7 @@ function sendRate(sel){
 	// alert("hey");
 	// $("#submit_review").css('display', 'block');
 	$("#solution_rating_form_" + sol).submit();
+	// alert("#solution_rating_form_" + sol);
 	// alert("Your rating was: "+sel.title);
 }
 

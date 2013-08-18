@@ -15,3 +15,6 @@
 //= require bootstrap
 //= require_tree .
 
+function redirect_to(url){
+	window.location.href = url;
+}

@@ -6,8 +6,12 @@
     <%= javascript_include_tag    "google-code-prettify/run_prettify"%>
     <%= javascript_include_tag "application" %>
 
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/adapters/jquery.js"></script>
+
+
     
-    <!-- https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js -->
+    <!--  <script src="/ckeditor/plugins/pbckcode/plugin.js"></script>  https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js -->
 
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>    

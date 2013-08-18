@@ -1,0 +1,13 @@
+
+<%= provide(:title, 'Add a Category') %>
+<h1>Add a Category</h1>
+
+
+<%= form_for(@category) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+<%= f.submit "Add Category", :class => "btn btn-large btn-primary green", id: "submitSol" %>
+<% end %>

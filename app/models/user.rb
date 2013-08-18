@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many :hints
   has_many :reviews
   has_many :comments
+
+  has_one :score
   ##############
   
   def feed
@@ -60,6 +62,31 @@ class User < ActiveRecord::Base
 
   def post(post)
     microposts.create(content: post)
+  end
+
+  def add_to_score(points)
+    if(score)
+      score.points += points
+      save 
+    else
+      Score.create(:points => points, user_id: id)
+    end
+  end
+
+  def has_points(points)
+    if(!score)
+      return false
+    end
+
+    return score.points >= points
+  end
+
+  def points()
+    if(!score)
+      return 0
+    end
+
+    return score.points
   end
   
   private

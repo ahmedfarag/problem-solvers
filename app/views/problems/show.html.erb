@@ -3,7 +3,36 @@
 
 <!-- <div style="float:left"><iframe class="problem_iframe" id='embedded' src="<%="#{@problem.link}"%>" /></div> -->
 
-<div class="explanations_container">
-<h3>Explanations:</h3>
-<%= @problem.explanations.count > 0 ? (render @problem.explanations) : "No Explanations for this problem, be the first ;)" %>
+<div class="items_container">
+	<h3>Categories</h3>
+	<%= @problem.categories.count > 0 ? (render @problem.categories) : "<p>&emsp;No Categories for this problem, be the first to add one ;)</p>".html_safe %>
+	<% if signed_in? %>
+		<span class="item item_button" onclick="redirect_to('<%= new_category_relation_path categorizable: {categorizable_id: @problem.id,categorizable_type: @problem.class } %>')"><h2>Add Category</h2></span>
+	<% end %>
 </div>
+<div  class="items_container">
+	<h3>Hints</h3>
+	<%= @problem.hints.count > 0 ? (render @problem.hints) : "<p>&emsp;No Hints for this problem, be the first to add one ;)</p>".html_safe %>
+	<% if signed_in? %>
+		<span class="item item_button" onclick="redirect_to('<%= new_hint_path problem_id: @problem.id %>')"><h2>Add Hint</h2></span>
+	<% end %>
+</div>
+
+<div class="items_container">
+<h3>Explanations</h3>
+<%= @problem.explanations.count > 0 ? (render @problem.explanations) : "No Explanations for this problem, be the first to add one ;)" %>
+<% if signed_in? %>
+		<span class="item item_button" onclick="redirect_to('<%= new_explanation_path problem_id: @problem.id%>')"><h2>Add Explanation</h2></span>
+	<% end %>
+</div>
+
+<div class="items_container">
+<h3>Solutions</h3>
+<%= @problem.solutions.count > 0 ? (render @problem.solutions) : "No Solutions for this problem, be the first to add one ;)" %>
+<% if signed_in? %>
+		<span class="item item_button" onclick="redirect_to('<%= new_solution_path problem_id: @problem.id%>')"><h2>Add Solution</h2></span>
+	<% end %>
+</div>
+
+<h3>Comments</h3>
+<div class="fb-comments" data-href="<%= problem_path(@problem)%>" data-width="940px" data-num-posts="10"></div>

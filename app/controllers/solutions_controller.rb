@@ -2,6 +2,7 @@ class SolutionsController < ApplicationController
   before_filter :signed_in_user, 
                 only: [:edit, :update, :create, :new, :destroy] 
   def index
+    @solutions = Solution.find_all_by_user_id(current_user.id)
   end
 
   def show
@@ -20,7 +21,8 @@ class SolutionsController < ApplicationController
     
     if @sol.save
       current_user.post("Just added a #{@sol.language.name} [[#{solution_path(@sol)},solution]] for [[#{problem_path(@sol.problem)},#{@sol.problem.name}]] problem.")
-      flash[:success] = "Your Solution was submitted successfully"
+      current_user.add_to_score(50)
+      flash[:success] = "Your Solution was submitted successfully, +50 points"
       redirect_to @sol
     else
       render 'new'

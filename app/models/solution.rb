@@ -6,8 +6,10 @@ class Solution < ActiveRecord::Base
   has_many :reviews, as: :reviewable
   has_many :comments, as: :commentable
 
-
-  # returns the average rating of this solution,
+  
+  has_many :category_relations, as: :categorizable
+  has_many :categories, through: :category_relations
+   # returns the average rating of this solution,
 
   def average_ratings
 	sum = 0
@@ -33,5 +35,6 @@ end
 #  user_id     :integer
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  title       :string(255)
 #
 

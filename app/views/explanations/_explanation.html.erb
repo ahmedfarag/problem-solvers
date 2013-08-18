@@ -1,4 +1,4 @@
-<div class="explanation">
+<div class="item" onclick="redirect_to('<%=explanation_path(explanation)%>')">
 
 <a href="<%= user_path(explanation.user) %>">
   <%= gravatar_for explanation.user, size: 50 %>
@@ -9,27 +9,28 @@
 <!-- <span>
   <%= pluralize(explanation.user.microposts.count, "micropost") %>
 </span> -->
-<h3><%= link_to  (explanation.content.first 20) + "...", explanation_path(explanation) %></h3>
+	<h2><%= explanation.title %></h2>
 
-<div  id="rateMe">
-    <a class="not-colored" id="avg_<%=explanation.id%>_1"></a>
-    <a class="not-colored" id="avg_<%=explanation.id%>_2"></a>
-    <a class="not-colored" id="avg_<%=explanation.id%>_3"></a>
-    <a class="not-colored" id="avg_<%=explanation.id%>_4"></a>
-    <a class="not-colored" id="avg_<%=explanation.id%>_5"></a>
+	<div  id="rateMe">
+	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_1"></a>
+	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_2"></a>
+	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_3"></a>
+	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_4"></a>
+	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_5"></a>
+	</div>
+
 </div>
+<hr class="special_hr"/>
 
-</div>
-
-
-
+<% if  explanation.average_ratings > 0 %>
 <script type="text/javascript" language="javascript" >
-	exp_id = "avg_<%=explanation.id%>_<%= explanation.average_ratings %>";
+	exp_id = "avg_explanation_<%=explanation.id%>_<%= explanation.average_ratings %>";
 
 	my_this = document.getElementById(exp_id);
 
-	preSet["avg_<%=explanation.id%>_"] = my_this;
+	preSet["avg_explanation_<%=explanation.id%>_"] = my_this;
 	
 	off(my_this);
 </script>
+<% end %>
 

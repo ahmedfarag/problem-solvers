@@ -1,0 +1,57 @@
+<h1><%= link_to "#{@hint.user.name}", user_path(@hint.user) %></h1>
+<h2><%= link_to "#{@hint.problem.name}", problem_path(@hint.problem) %></h2>
+
+<p style="float:left;">Average rating: </p>
+<div style="float:left;clear:none;"  id="rateMe">
+    <a class="not-colored" id="avg_1"></a>
+    <a class="not-colored" id="avg_2"></a>
+    <a class="not-colored" id="avg_3"></a>
+    <a class="not-colored" id="avg_4"></a>
+    <a class="not-colored" id="avg_5"></a>
+</div>
+<br/>
+<h3 style="float:left;clear:both;"><%= @hint.title %></h3>
+
+<p style="float:left;clear:both;"><%= @hint.content %></p>
+
+<p style="float:left;clear:both;">Your rating: </p>
+<div style="float:left;clear:none;" id="rateMe" title="Rate Me...">
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
+</div>
+<div class="fb-comments" data-href="<%=hint_path(@hint)%>" data-width="940px" data-num-posts="10"></div>
+
+
+<%= form_for(@hint.reviews.build(user:current_user),remote: true, :html => {id: "hint_rating_form_#{@hint.id}", style:"margin-bottom:0px;"}) do |f| %>
+  <div><%= f.hidden_field :reviewable_id %><%= f.hidden_field :reviewable_type %><%= f.hidden_field :user_id %><%= f.hidden_field :stars, id:"hint_rating_#{@hint.id}" %></div>
+
+<% end %>
+
+<% if @hint.reviews.exists?(user_id: current_user.id) %>
+		<script type="text/javascript" language="javascript" >
+			sol_id = "<%= @hint.id %>_<%= @hint.reviews.find_by_user_id(current_user.id).stars %>";
+			my_this = document.getElementById(sol_id);
+			preSet["<%= @hint.id %>_"] = my_this;
+			off(my_this);
+
+		</script>
+	<% end %>	
+
+<% if  @hint.average_ratings > 0 %>
+<script type="text/javascript" language="javascript" >
+	$("#reviews_cnt").html("by <%= pluralize @hint.reviews.count, 'user' %>" );
+	sol_id = "avg_<%= @hint.average_ratings %>";
+
+	my_this = document.getElementById(sol_id);
+
+	preSet["avg_"] = my_this;
+	
+	off(my_this);
+</script>
+
+<% end %>
+
+

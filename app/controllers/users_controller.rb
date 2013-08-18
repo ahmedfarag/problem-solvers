@@ -19,6 +19,27 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
+  def explanations
+    @title = "Explanations"
+    @user = User.find(params[:id])
+    @data = @user.explanations.paginate(page: params[:page])
+    render 'show_data'
+  end
+
+  def hints
+    @title = "Hints"
+    @user = User.find(params[:id])
+    @data = @user.hints.paginate(page: params[:page])
+    render 'show_data'
+  end
+
+  def solutions
+    @title = "Solutions"
+    @user = User.find(params[:id])
+    @data = @user.solutions.paginate(page: params[:page])
+    render 'show_data'
+  end
+
   def index
     @users = User.paginate(page: params[:page])
   end

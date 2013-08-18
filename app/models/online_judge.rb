@@ -10,5 +10,6 @@ end
 #  link       :string(255)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  logo       :string(255)
 #
 

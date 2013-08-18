@@ -3,6 +3,9 @@ class Problem < ActiveRecord::Base
   has_many :solutions
   has_many :explanations
   has_many :hints
+
+  has_many :category_relations, as: :categorizable
+  has_many :categories, through: :category_relations
 end
 # == Schema Information
 #

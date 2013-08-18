@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130721154616) do
+ActiveRecord::Schema.define(:version => 20130805043705) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "category_relations", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "categorizable_id"
+    t.string   "categorizable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "category_relations", ["categorizable_id"], :name => "index_category_relations_on_categorizable_id"
+  add_index "category_relations", ["category_id", "categorizable_id", "categorizable_type"], :name => "category_categorizable_index", :unique => true
+  add_index "category_relations", ["category_id"], :name => "index_category_relations_on_category_id"
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -31,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130721154616) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "title"
   end
 
   add_index "explanations", ["problem_id"], :name => "index_explanations_on_problem_id"
@@ -43,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130721154616) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "title"
   end
 
   add_index "hints", ["problem_id"], :name => "index_hints_on_problem_id"
@@ -105,6 +125,15 @@ ActiveRecord::Schema.define(:version => 20130721154616) do
   add_index "reviews", ["reviewable_id"], :name => "index_reviews_on_reviewable_id"
   add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
 
+  create_table "scores", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "points"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "scores", ["user_id"], :name => "index_scores_on_user_id"
+
   create_table "solutions", :force => true do |t|
     t.text     "code"
     t.integer  "language_id"
@@ -113,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20130721154616) do
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "title"
   end
 
   add_index "solutions", ["language_id"], :name => "index_solutions_on_language_id"

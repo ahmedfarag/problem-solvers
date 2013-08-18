@@ -9,7 +9,6 @@ end
 #
 #  id              :integer         not null, primary key
 #  stars           :integer
-#  content         :text
 #  user_id         :integer
 #  reviewable_id   :integer
 #  reviewable_type :string(255)

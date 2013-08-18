@@ -1,0 +1,37 @@
+<div class="item" onclick="redirect_to('<%=solution_path(solution)%>')">
+
+<a href="<%= user_path(solution.user) %>">
+  <%= gravatar_for solution.user, size: 50 %>
+</a>
+<h1>
+  <%= link_to solution.user.name, user_path(solution.user) %>
+</h1>
+<!-- <span>
+  <%= pluralize(solution.user.microposts.count, "micropost") %>
+</span> -->
+<h2><%= solution.title %></h2>
+	
+	<div  id="rateMe">
+	    <a class="not-colored" id="avg_solution_<%=solution.id%>_1"></a>
+	    <a class="not-colored" id="avg_solution_<%=solution.id%>_2"></a>
+	    <a class="not-colored" id="avg_solution_<%=solution.id%>_3"></a>
+	    <a class="not-colored" id="avg_solution_<%=solution.id%>_4"></a>
+	    <a class="not-colored" id="avg_solution_<%=solution.id%>_5"></a>
+	</div>
+
+<h2> <%= solution.language.name %> </h2>
+<%= image_tag asset_path(solution.language.logo) %>
+</div>
+<hr class="special_hr"/>
+
+<% if  solution.average_ratings > 0 %>
+<script type="text/javascript" language="javascript" >
+	exp_id = "avg_solution_<%=solution.id%>_<%= solution.average_ratings %>";
+
+	my_this = document.getElementById(exp_id);
+
+	preSet["avg_solution_<%=solution.id%>_"] = my_this;
+	
+	off(my_this);
+</script>
+<% end %>

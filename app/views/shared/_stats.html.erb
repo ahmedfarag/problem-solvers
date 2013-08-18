@@ -1,5 +1,35 @@
 <% @user ||= current_user %>
 <div class="stats">
+  <a href="<%= "#" %>">
+    <strong id="points" class="stat">
+      <%= @user.points %>
+    </strong>
+    points
+  </a>
+  <a href="<%= explanations_user_path(@user) %>">
+    <strong id="explanations" class="stat">
+      <%= @user.explanations.count %>
+    </strong>
+    explanations
+  </a>
+  <a href="<%= solutions_user_path(@user) %>">
+    <strong id="solutions" class="stat">
+      <%= @user.solutions.count %>
+    </strong>
+    solutions
+  </a>
+
+  
+
+</div>
+<hr style="margin: 1px">
+<div class="stats">
+   <a href="<%= hints_user_path(@user) %>">
+    <strong id="hints" class="stat">
+      <%= @user.hints.count %>
+    </strong>
+    hints
+  </a>
   <a href="<%= following_user_path(@user) %>">
     <strong id="following" class="stat">
       <%= @user.followed_users.count %>
@@ -12,4 +42,4 @@
     </strong>
     followers
   </a>
-</div>
+  </div>

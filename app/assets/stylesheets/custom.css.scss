@@ -222,6 +222,7 @@ aside {
 .stats {
   overflow: auto;
   a {
+    width: 75px;
     float: left;
     padding: 0 10px;
     border-left: 1px solid $grayLighter;

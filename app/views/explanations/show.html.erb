@@ -1,2 +1,22 @@
-<h1>Explanations#show</h1>
-<p>Find me in app/views/explanations/show.html.erb</p>
+<h1><%= link_to "#{@explanation.user.name}", user_path(@explanation.user) %></h1>
+<h2><%= link_to "#{@explanation.problem.name}", problem_path(@explanation.problem) %></h2>
+<p style="float:left;">Average rating: </p>
+<div style="float:left;clear:none;"  id="rateMe">
+    <a class="not-colored" id="avg_1"></a>
+    <a class="not-colored" id="avg_2"></a>
+    <a class="not-colored" id="avg_3"></a>
+    <a class="not-colored" id="avg_4"></a>
+    <a class="not-colored" id="avg_5"></a>
+</div>
+<div style="float:left;clear:none;">
+<%= @explanation.content.html_safe %>
+</div>
+<p style="float:left;clear:both;">Your rating: </p>
+<div style="float:left;clear:none;" id="rateMe" title="Rate Me...">
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_1" title="very bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_2" title="bad" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_3" title="Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_4" title="Pretty Good" onmouseover="rating(this)" onmouseout="off(this)"></a>
+    <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
+</div>
+<div class="fb-comments" data-href="<%=explanation_path(@explanation)%>" data-width="940px" data-num-posts="10"></div>
