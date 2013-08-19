@@ -1,6 +1,13 @@
 <li>
   <%= gravatar_for user, size: 52 %>
   <%= link_to user.name, user %>
+<div id="follow_form_<%=user.id%>" class="follow_form"><%= render :partial => "follow_form", object: user, as: :user  if signed_in? %></div>
+
+ <section style="width:280px;">
+      <%= render :partial => 'shared/stats', object: user, as: :user %>
+ </section>
+
+  
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete, confirm: "You sure?" %>
   <% end %>

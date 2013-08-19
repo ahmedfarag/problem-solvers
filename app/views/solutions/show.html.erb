@@ -1,5 +1,6 @@
-<h1><%= link_to "#{@solution.user.name}", user_path(@solution.user) %></h1>
-<h2><%= link_to "#{@solution.problem.name}", problem_path(@solution.problem) %></h2>
+<h1>Solution for <%= link_to "#{@solution.problem.name}", problem_path(@solution.problem) %></h1>
+<h2>by <%= link_to "#{@solution.user.name}", user_path(@solution.user) %></h2>
+
 
 
 <h3><%= @solution.language.name %></h3>

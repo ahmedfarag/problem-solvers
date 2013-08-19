@@ -17,7 +17,7 @@ SampleApp::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
-  resources :problems, only: [:show]
+  resources :problems, only: [:show, :create]
   resources :solutions, only: [:new, :show, :create, :index]
   resources :reviews, only: [:create]
   resources :explanations, only: [:index, :show, :create, :new]

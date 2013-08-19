@@ -1,20 +1,20 @@
-<% @user ||= current_user %>
+
 <div class="stats">
-  <a href="<%= "#" %>">
+  <a href="<%=user_path(user)  %>">
     <strong id="points" class="stat">
-      <%= @user.points %>
+      <%= user.points %>
     </strong>
     points
   </a>
-  <a href="<%= explanations_user_path(@user) %>">
+  <a href="<%= explanations_user_path(user) %>">
     <strong id="explanations" class="stat">
-      <%= @user.explanations.count %>
+      <%= user.explanations.count %>
     </strong>
     explanations
   </a>
-  <a href="<%= solutions_user_path(@user) %>">
+  <a href="<%= solutions_user_path(user) %>">
     <strong id="solutions" class="stat">
-      <%= @user.solutions.count %>
+      <%= user.solutions.count %>
     </strong>
     solutions
   </a>
@@ -24,21 +24,21 @@
 </div>
 <hr style="margin: 1px">
 <div class="stats">
-   <a href="<%= hints_user_path(@user) %>">
+   <a href="<%= hints_user_path(user) %>">
     <strong id="hints" class="stat">
-      <%= @user.hints.count %>
+      <%= user.hints.count %>
     </strong>
     hints
   </a>
-  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
-      <%= @user.followed_users.count %>
+  <a href="<%= following_user_path(user) %>">
+    <strong id="following_count_<%=user.id%>" class="stat">
+      <%= user.followed_users.count %>
     </strong>
     following
   </a>
-  <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
-      <%= @user.followers.count %>
+  <a href="<%= followers_user_path(user) %>">
+    <strong id="followers_count_<%=user.id%>" class="stat">
+      <%= user.followers.count %>
     </strong>
     followers
   </a>

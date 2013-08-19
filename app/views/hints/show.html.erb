@@ -1,5 +1,5 @@
-<h1><%= link_to "#{@hint.user.name}", user_path(@hint.user) %></h1>
-<h2><%= link_to "#{@hint.problem.name}", problem_path(@hint.problem) %></h2>
+<h1>Hint for <%= link_to "#{@hint.problem.name}", problem_path(@hint.problem) %></h1>
+<h2>by <%= link_to "#{@hint.user.name}", user_path(@hint.user) %></h2>
 
 <p style="float:left;">Average rating: </p>
 <div style="float:left;clear:none;"  id="rateMe">
@@ -9,7 +9,7 @@
     <a class="not-colored" id="avg_4"></a>
     <a class="not-colored" id="avg_5"></a>
 </div>
-<br/>
+<span  id="reviews_cnt" style="line-height:25px;margin-left:6px;"></span>
 <h3 style="float:left;clear:both;"><%= @hint.title %></h3>
 
 <p style="float:left;clear:both;"><%= @hint.content %></p>
@@ -23,7 +23,7 @@
 	    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
 	</div>
 <% end %>	
-<div class="fb-comments" data-href="<%=hint_path(@hint)%>" data-width="940px" data-num-posts="10"></div>
+<div style="float:left;clear:both;" class="fb-comments" data-href="<%=hint_path(@hint)%>" data-width="940px" data-num-posts="10"></div>
 
 <% if signed_in? %>
 	<%= form_for(@hint.reviews.build(user:current_user),remote: true, :html => {id: "rating_form_#{@hint.id}", style:"margin-bottom:0px;"}) do |f| %>
