@@ -34,7 +34,7 @@
 	</div>
 <% end %>
 
-<div class="fb-comments" data-href="<%=solution_path(@solution)%>" data-width="940px" data-num-posts="10"></div>
+<div class="fb-comments" data-href="<%=  "#{request.protocol}#{request.host}:#{request.port}#{solution_path(@solution)}"%>" data-width="940px" data-num-posts="10"></div>
 
 <% if signed_in? %>
 	<%= form_for(@solution.reviews.build(user:current_user),remote: true, :html => {id: "rating_form_#{@solution.id}", style:"margin-bottom:0px;"}) do |f| %>
