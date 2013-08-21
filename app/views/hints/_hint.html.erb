@@ -1,3 +1,6 @@
+<% @clarity = [ "Doesn't expose a lot from the idea", "Exposes a small part of the idea", "Exposes half the idea", "Exposes more than half the idea, but not all of it",  "Exposes the whole idea"]
+	%>
+<hr class="special_hr"/>
 <div  class="item" onclick="redirect_to('<%=hint_path(hint)%>')">
 
 	<a href="<%= user_path(hint.user) %>">
@@ -10,6 +13,12 @@
 	  <%= pluralize(hint.user.microposts.count, "micropost") %>
 	</span> -->
 	<h2><%= hint.title %></h2>
+	<div class="delete_div">
+	  <% if current_user?(hint.user) %>
+	    <%= link_to image_tag(asset_path("trash-black.png")), hint, method:  :delete,
+	                                     confirm: "You sure?"%>
+	  <% end %>
+	</div>
 	<div  id="rateMe">
 		<a class="not-colored" id="avg_hint_<%=hint.id%>_1"></a>
 	    <a class="not-colored" id="avg_hint_<%=hint.id%>_2"></a>
@@ -17,7 +26,9 @@
 	    <a class="not-colored" id="avg_hint_<%=hint.id%>_4"></a>
 	    <a class="not-colored" id="avg_hint_<%=hint.id%>_5"></a>
 	</div>
-<hr class="special_hr"/>
+	<div class="clearity_level">
+		<%= @clarity[hint.clarity] %>
+	</div>
 </div>
 
 <% if hint.average_ratings > 0 %>

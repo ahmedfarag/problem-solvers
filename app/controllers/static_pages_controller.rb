@@ -14,4 +14,26 @@ class StaticPagesController < ApplicationController
   
   def contact
   end
+
+  def hall_of_fame
+    @users = User.all
+    
+    
+    @most_solvers = @users.sort_by{|u| -u.solutions.count}.first 5
+
+   
+    @most_explainers =  @users.sort_by{|u| -u.explanations.count}.first 5
+
+    
+    @most_hinters = @users.sort_by{|u| -u.hints.count}.first 5
+
+    
+    @most_points = @users.sort_by{|u| -u.points}.first 5
+
+
+  end
+
+  def chrome_extension
+
+  end
 end

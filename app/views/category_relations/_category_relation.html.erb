@@ -1,0 +1,9 @@
+<div class="category">
+	<h2><%= link_to category_relation.category.name, category_path(category_relation.category), title: "added by #{category_relation.user.name}" %></h2>
+	<div class="delete_div">
+	  <% if current_user?(category_relation.user) %>
+	    <%= link_to image_tag(asset_path("trash-black.png")), category_relation, method:  :delete,
+	                                     confirm: "You sure?"%>
+	  <% end %>
+	</div>
+</div>

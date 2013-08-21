@@ -129,3 +129,29 @@
 		margin-bottom: 0px;
 		margin-top: 0px;
 	}
+
+.item_unclickable:hover{
+	cursor: default;
+}
+
+.delete_div{
+	width:20px;
+	height:50px;
+	float:right;
+	a img:hover{
+		opacity:1;
+	}
+	a img{
+		display:block;
+		margin-top:16px;
+		opacity:.5;
+		width:18px;
+		height:18px;
+	}
+}
+
+
+.clickable_div:hover{
+	cursor: hand;
+  	cursor: pointer;
+}

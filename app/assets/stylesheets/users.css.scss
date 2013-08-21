@@ -5,3 +5,23 @@
 .follow_form{
   float:right;
 }
+
+.user_item_stats{
+	float:right;
+	padding-top:14px;
+	a{
+		margin-right: 15px;
+	}
+}
+
+.user_item_follow_container{
+	float: right;
+	margin-top: 6px;
+	margin-right: 7px;
+	input{
+		width: 100px;
+		height: 37px;
+		padding: 0px;
+	}
+
+}

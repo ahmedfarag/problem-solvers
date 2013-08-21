@@ -2,10 +2,22 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <%= link_to(image_tag(asset_path("problem-solver-active-32.png"), style:"float:left;margin:4px;"), root_path) %>
       <%= link_to "Problem Solvers", root_path, id: "logo" %>
+      <div class="search_box">
+        
+        <%= form_tag problems_path, :method => 'get' do %>
+          <p>
+            <%= text_field_tag :search, params[:search], placeholder:"Search for a problem ..." %>
+          </p>
+        <% end %>
+      </div>
+      
       <nav>
         <ul class="nav pull-right">
+
           <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Hall of fame", hall_of_fame_path %></li>
           <% if signed_in? %>
             <li><%= link_to "Users", users_path %></li>
             <li id="fat-menu" class="dropdown">
@@ -34,4 +46,27 @@
     </div>
   </div>
 </header>
+
+ <div class="download_for_chrome" ><%= link_to image_tag(asset_path("chrome-logo.png")), chrome_extension_path, title: "Highly Recommended!!" %>
+  <%= link_to "chrome<br/>extension".html_safe, chrome_extension_path, title: "Highly Recommended!!" %>
+ </div>
+
+<!-- UserVoice JavaScript SDK (only needed once on a page) -->
+<script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/2etUFNVfBUhYO4BakqXg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
+
+<!-- A tab to launch the Classic Widget -->
+<script>
+UserVoice = window.UserVoice || [];
+UserVoice.push(['showTab', 'classic_widget', {
+  mode: 'full',
+  primary_color: '#333333',
+  link_color: '#007dbf',
+  default_mode: 'feedback',
+  forum_id: 219658,
+  tab_label: 'Feedback',
+  tab_color: '#333333',
+  tab_position: 'bottom-right',
+  tab_inverted: false
+}]);
+</script>
 

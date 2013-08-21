@@ -1,0 +1,11 @@
+features:
+- add a problem using link
+- see all in problem sections
+- extension popup with data
+- extenstion detects submits
+- connect with facebook/google+/twitter
+
+bugs:
+- hall of fame, follow/unfollow 
+
+- opening problem twice b4 being created -- no duplicates -- ignored

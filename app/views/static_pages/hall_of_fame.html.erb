@@ -1,0 +1,21 @@
+<% provide(:title, 'Hall of fame') %>
+<h1>Hall of fame</h1>
+<div class="items_container">
+	<h3>Most Solvers</h3>
+  <%= render :partial => 'users/user_item', collection: @most_solvers, as: :user %>
+</div>
+
+<div class="items_container">
+	<h3>Most Explainers</h3>
+  <%= render :partial => 'users/user_item', collection: @most_explainers, as: :user %>
+</div>
+
+<div class="items_container">
+	<h3>Most Hint Composers</h3>
+  <%= render :partial => 'users/user_item', collection: @most_hinters, as: :user %>
+</div>
+
+<div class="items_container">
+	<h3>Highest points</h3>
+  <%= render :partial => 'users/user_item', collection: @most_points, as: :user %>
+</div>

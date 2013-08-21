@@ -5,7 +5,7 @@
 
 <div class="items_container">
 	<h3>Categories</h3>
-	<%= @problem.categories.count > 0 ? (render @problem.categories) : "<p>&emsp;No Categories for this problem, be the first to add one ;)</p>".html_safe %>
+	<%= @problem.category_relations.count > 0 ? (render @problem.category_relations) : "<p>&emsp;No Categories for this problem, be the first to add one ;)</p>".html_safe %>
 	<% if signed_in? %>
 		<span class="item item_button" onclick="redirect_to('<%= new_category_relation_path categorizable: {categorizable_id: @problem.id,categorizable_type: @problem.class } %>')"><h2>Add Category</h2></span>
 	<% end %>
@@ -20,7 +20,7 @@
 
 <div class="items_container">
 <h3>Explanations</h3>
-<%= @problem.explanations.count > 0 ? (render @problem.explanations) : "No Explanations for this problem, be the first to add one ;)" %>
+<%= @problem.explanations.count > 0 ? (render @problem.explanations) : "<p>&emsp;No Explanations for this problem, be the first to add one ;)</p>".html_safe %>
 <% if signed_in? %>
 		<span class="item item_button" onclick="redirect_to('<%= new_explanation_path problem_id: @problem.id%>')"><h2>Add Explanation</h2></span>
 	<% end %>
@@ -28,8 +28,9 @@
 
 <div class="items_container">
 <h3>Solutions</h3>
-<%= @problem.solutions.count > 0 ? (render @problem.solutions) : "No Solutions for this problem, be the first to add one ;)" %>
+<%= @problem.solutions.count > 0 ? (render @problem.solutions) : "<p>&emsp;No Solutions for this problem, be the first to add one ;)</p>".html_safe %>
 <% if signed_in? %>
+		
 		<span class="item item_button" onclick="redirect_to('<%= new_solution_path problem_id: @problem.id%>')"><h2>Add Solution</h2></span>
 	<% end %>
 </div>

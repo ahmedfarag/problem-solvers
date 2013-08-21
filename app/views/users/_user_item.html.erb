@@ -1,0 +1,41 @@
+<hr class="special_hr"/>
+<div class="item item_unclickable">
+
+<a href="<%= user_path(user) %>">
+  <%= gravatar_for user, size: 50 %>
+</a>
+<h1>
+  <%= link_to user.name, user_path(user) %>
+</h1>
+<div class="user_item_follow_container">
+<div id="follow_form_<%=user.id%>" class="follow_form"><%= render :partial => "users/follow_form", object: user, as: :user  if signed_in? %></div>
+</div>
+	<div class="user_item_stats">
+  <a href="<%=user_path(user)  %>">
+    <strong id="points" class="stat">
+      <%= user.points %>
+    </strong>
+    points
+  </a>
+  <a href="<%= explanations_user_path(user) %>">
+    <strong id="explanations" class="stat">
+      <%= user.explanations.count %>
+    </strong>
+    explanations
+  </a>
+  <a href="<%= solutions_user_path(user) %>">
+    <strong id="solutions" class="stat">
+      <%= user.solutions.count %>
+    </strong>
+    solutions
+  </a>
+
+   <a href="<%= hints_user_path(user) %>">
+    <strong id="hints" class="stat">
+      <%= user.hints.count %>
+    </strong>
+    hints
+  </a>
+</div>
+
+</div>

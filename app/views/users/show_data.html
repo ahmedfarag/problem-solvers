@@ -4,7 +4,7 @@
     <section>
       <%= gravatar_for @user %>
       <h1><%= @user.name %></h1>
-      <div id="follow_form_<%=@user.id%>" class="follow_form" style="float:none"><%= render :partial => "follow_form", object: @user, as: :user  if signed_in? %></div>
+      <div id="follow_form_<%=@user.id%>" class="follow_form" style="float:none"><%= render :partial => "users/follow_form", object: @user, as: :user  if signed_in? %></div>
     </section>
     <section>
      <%= render :partial => 'shared/stats', object: @user, as: :user %>

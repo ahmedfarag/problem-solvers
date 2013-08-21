@@ -1,4 +1,5 @@
 class Problem < ActiveRecord::Base
+
   belongs_to :online_judge
   has_many :solutions
   has_many :explanations
@@ -6,6 +7,17 @@ class Problem < ActiveRecord::Base
 
   has_many :category_relations, as: :categorizable
   has_many :categories, through: :category_relations
+
+
+  validates :link, presence:   true, uniqueness: { case_sensitive: false }
+
+  def self.search(search)
+  	if search
+    	find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+  	else
+    	find(:all)
+  	end
+  end
 end
 # == Schema Information
 #

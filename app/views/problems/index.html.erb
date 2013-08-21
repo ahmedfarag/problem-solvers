@@ -1,2 +1,18 @@
-<h1>Problems#index</h1>
-<p>Find me in app/views/problems/index.html.erb</p>
+<% provide(:title, @title) %>
+
+<% if @problems != nil %>
+	
+
+<div class="items_container">
+	<h3><%=@title%></h3>
+<%= render @problems  %>
+</div>
+
+<%= will_paginate %>
+
+<% else %>
+	<div class="items_container">
+		<h3><%=@title%></h3>
+		<p>No problems was found</p>
+	</div>
+<% end %>

@@ -3,7 +3,7 @@
     <section>
       <%= gravatar_for @user %>
       <h1><%= @user.name %></h1>
-      <div id="follow_form_<%=@user.id%>" class="follow_form" style="float:none"><%= render :partial => "follow_form", object: @user, as: :user  if signed_in? %></div>
+      <div id="follow_form_<%=@user.id%>" class="follow_form" style="float:none"><%= render :partial => "users/follow_form", object: @user, as: :user  if signed_in? %></div>
     </section>
     <section>
       <%= render :partial => 'shared/stats', object: @user, as: :user %>
@@ -17,11 +17,11 @@
     </section>
   </aside>
   <div class="span8">
-    <h3><%= yield(:title) %></h3>
     <% if @users.any? %>
-      <ul class="users">
-        <%= render @users %>
-      </ul>
+      <div class="items_container">
+        <h3><%= @title %></h3>
+        <%= render :partial => 'users/user_item', collection: @users, as: :user %>
+      </div>
       <%= will_paginate @users %>
     <% end %>
   </div>

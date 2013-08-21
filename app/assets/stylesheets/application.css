@@ -20,3 +20,65 @@
 	color: red;
 }
 
+.search_box{
+	float:left;
+	width: 290px;
+	height: 40px;
+
+
+}
+.search_icon img{
+		float:left;
+		width: 20px;
+		height: 20px;
+		margin-top: 10px;
+}
+#search{
+		height: 30px;
+		width: 170px;
+		padding: 2px;
+		margin: 5px;
+		background-image: url(search_icon.png);
+	    background-repeat: no-repeat;
+	    background-size: 20px 20px;
+	    background-position: 2px 5px;
+	    text-indent: 20px;
+
+	    -webkit-border-radius: 30px;
+
+	  	-moz-border-radius: 30px;
+
+	  	border-radius: 30px;
+
+	}
+
+.download_for_chrome{
+    position: fixed;
+    left: 36px;
+    bottom: 0px;
+    z-index: 2;
+    width: 120px;
+    height: 46px;
+    text-align: center;
+    background-color: #333;
+    -webkit-border-top-left-radius: 10px;
+  	-webkit-border-top-right-radius: 10px;
+
+  	-moz-border-top-left-radius: 10px;
+  	-moz-border-top-right-radius: 10px;
+
+  	border-top-left-radius: 10px;
+  	border-top-right-radius: 10px;
+}
+.download_for_chrome a{
+	float: left;
+	margin-top: 3px;
+
+}
+.download_for_chrome img{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    margin-left: 5px;
+
+}

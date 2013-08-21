@@ -1,17 +1,14 @@
 
 <%= provide(:title, 'Add a solution') %>
-<h1>Add a solution</h1>
+<h1>Add a solution for <%= link_to @problem.name, problem_path(@problem) %></h1>
 
 
 <%= form_for(@solution) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-
+  <%= f.hidden_field :problem_id %>
 
   <%= f.label :code %>
   <%= f.text_area :code , id:"code_area" %>
-
-  <%= f.label :problem_id, "Problem" %>
-  <%= f.select :problem_id, options_from_collection_for_select(@problems, "id", "name") %>
 
   <%= f.label :language_id, "Language" %>
   <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"), onchange:"language_changed()" %>

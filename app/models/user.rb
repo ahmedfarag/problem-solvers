@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   has_many :hints
   has_many :reviews
   has_many :comments
+  has_many :category_relations
 
   has_one :score
   ##############
@@ -66,8 +67,9 @@ class User < ActiveRecord::Base
 
   def add_to_score(points)
     if(score)
-      score.points += points
-      save 
+      s = score
+      s.points += points
+      s.save 
     else
       Score.create(:points => points, user_id: id)
     end

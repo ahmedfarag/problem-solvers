@@ -1,6 +1,6 @@
 <h1>Hint for <%= link_to "#{@hint.problem.name}", problem_path(@hint.problem) %></h1>
 <h2>by <%= link_to "#{@hint.user.name}", user_path(@hint.user) %></h2>
-
+<h2 style="color:orange;">Warning: This problem <%= @clarity[@hint.clarity] %>.</h2>
 <p style="float:left;">Average rating: </p>
 <div style="float:left;clear:none;"  id="rateMe">
     <a class="not-colored" id="avg_1"></a>
@@ -10,6 +10,7 @@
     <a class="not-colored" id="avg_5"></a>
 </div>
 <span  id="reviews_cnt" style="line-height:25px;margin-left:6px;"></span>
+
 <h3 style="float:left;clear:both;"><%= @hint.title %></h3>
 
 <p style="float:left;clear:both;"><%= @hint.content %></p>

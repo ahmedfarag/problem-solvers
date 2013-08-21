@@ -17,14 +17,14 @@ SampleApp::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
-  resources :problems, only: [:show, :create]
-  resources :solutions, only: [:new, :show, :create, :index]
+  resources :problems, only: [:show, :create, :index]
+  resources :solutions, only: [:new, :show, :create, :index, :destroy]
   resources :reviews, only: [:create]
-  resources :explanations, only: [:index, :show, :create, :new]
-  resources :hints, only: [:create, :new, :show]
+  resources :explanations, only: [:index, :show, :create, :new, :destroy]
+  resources :hints, only: [:create, :new, :show, :destroy]
   resources :categories, only: [:index, :show, :create, :new]
   resources :online_judges, only: [:new, :show, :create, :index]
-  resources :category_relations, only: [:create, :new]
+  resources :category_relations, only: [:create, :new, :destroy]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
@@ -36,5 +36,7 @@ SampleApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/hall_of_fame', to: 'static_pages#hall_of_fame'
+  match '/chrome_extension', to: 'static_pages#chrome_extension'
 
 end

@@ -1,3 +1,4 @@
+<hr class="special_hr"/>
 <div class="item" onclick="redirect_to('<%=solution_path(solution)%>')">
 
 <a href="<%= user_path(solution.user) %>">
@@ -10,7 +11,12 @@
   <%= pluralize(solution.user.microposts.count, "micropost") %>
 </span> -->
 <h2><%= solution.title %></h2>
-	
+	<div class="delete_div">
+	  <% if current_user?(solution.user) %>
+	    <%= link_to image_tag(asset_path("trash-black.png")), solution, method:  :delete,
+	                                     confirm: "You sure?"%>
+	  <% end %>
+	</div>
 	<div  id="rateMe">
 	    <a class="not-colored" id="avg_solution_<%=solution.id%>_1"></a>
 	    <a class="not-colored" id="avg_solution_<%=solution.id%>_2"></a>
@@ -22,7 +28,7 @@
 <h2> <%= solution.language.name %> </h2>
 <%= image_tag asset_path(solution.language.logo) %>
 </div>
-<hr class="special_hr"/>
+
 
 <% if  solution.average_ratings > 0 %>
 <script type="text/javascript" language="javascript" >

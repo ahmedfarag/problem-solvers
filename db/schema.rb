@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805043705) do
+ActiveRecord::Schema.define(:version => 20130821091744) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -25,11 +25,13 @@ ActiveRecord::Schema.define(:version => 20130805043705) do
     t.string   "categorizable_type"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "user_id"
   end
 
   add_index "category_relations", ["categorizable_id"], :name => "index_category_relations_on_categorizable_id"
   add_index "category_relations", ["category_id", "categorizable_id", "categorizable_type"], :name => "category_categorizable_index", :unique => true
   add_index "category_relations", ["category_id"], :name => "index_category_relations_on_category_id"
+  add_index "category_relations", ["user_id"], :name => "index_category_relations_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -100,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20130805043705) do
     t.datetime "updated_at",      :null => false
   end
 
+  add_index "problems", ["link"], :name => "index_problems_on_link", :unique => true
   add_index "problems", ["online_judge_id"], :name => "index_problems_on_online_judge_id"
 
   create_table "relationships", :force => true do |t|

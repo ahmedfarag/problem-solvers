@@ -1,3 +1,4 @@
+<hr class="special_hr"/>
 <div class="item" onclick="redirect_to('<%=explanation_path(explanation)%>')">
 
 <a href="<%= user_path(explanation.user) %>">
@@ -10,7 +11,12 @@
   <%= pluralize(explanation.user.microposts.count, "micropost") %>
 </span> -->
 	<h2><%= explanation.title %></h2>
-
+	<div class="delete_div">
+	  <% if current_user?(explanation.user) %>
+	    <%= link_to image_tag(asset_path("trash-black.png")), explanation, method:  :delete,
+	                                     confirm: "You sure?"%>
+	  <% end %>
+	</div>
 	<div  id="rateMe">
 	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_1"></a>
 	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_2"></a>
@@ -20,7 +26,7 @@
 	</div>
 
 </div>
-<hr class="special_hr"/>
+
 
 <% if  explanation.average_ratings > 0 %>
 <script type="text/javascript" language="javascript" >
