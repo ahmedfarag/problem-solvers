@@ -4,7 +4,14 @@ features:
 - extension popup with data
 - extenstion detects submits
 - connect with facebook/google+/twitter
-
+- user restrictions
+- private solutions
+- explain scoring system
+- solution item clickables
+- enhance borders of problem show
+- urls contains names
+- ask for a solution/explanation/hint permission/creation 
+- notification system
 bugs:
 - hall of fame, follow/unfollow 
 
