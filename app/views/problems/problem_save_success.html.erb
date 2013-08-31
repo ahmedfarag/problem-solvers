@@ -1,1 +1,1 @@
-<%="#{@count},#{request.host_with_port}#{problem_path(@problem)}"%>
+<%="#{@problem.solutions.count},#{@problem.hints.count},#{@problem.explanations.count},#{@problem.id}"%>
