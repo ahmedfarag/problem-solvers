@@ -1,5 +1,5 @@
 <div class="category">
-	<h2><%= link_to category_relation.category.name, category_path(category_relation.category), title: "added by #{category_relation.user.name}" %></h2>
+	<h2><%= link_to category_relation.category.name, category_path(category_relation.category), title: "Added by #{category_relation.user.name}" %></h2>
 	
 	  <% if current_user?(category_relation.user) %>
 	  <div class="delete_div">

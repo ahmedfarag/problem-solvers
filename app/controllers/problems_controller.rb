@@ -36,7 +36,6 @@ class ProblemsController < ApplicationController
         return
       end
     end
-    @count = @problem.solutions.count + @problem.hints.count + @problem.explanations.count
     render "problems/problem_save_success", :layout => false
   end
 
@@ -62,6 +61,13 @@ class ProblemsController < ApplicationController
     @problem = Problem.find(params[:id])
     @title = "Solutions for "
     @data = @problem.solutions.paginate(page: params[:page])
+    render 'show_data'
+  end
+
+  def categories
+    @problem = Problem.find(params[:id])
+    @title = "Categories for "
+    @data = @problem.category_relations.paginate(page: params[:page])
     render 'show_data'
   end
 end

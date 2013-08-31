@@ -16,7 +16,7 @@ SampleApp::Application.routes.draw do
 
   resources :problems do
     member do
-      get :solutions, :hints, :explanations
+      get :solutions, :hints, :explanations, :categories
     end
   end
 
