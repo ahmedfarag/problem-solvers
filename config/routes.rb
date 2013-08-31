@@ -13,6 +13,13 @@ SampleApp::Application.routes.draw do
       get :following, :followers, :solutions, :hints, :explanations
     end
   end
+
+  resources :problems do
+    member do
+      get :solutions, :hints, :explanations
+    end
+  end
+
   resources :sessions,   only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]

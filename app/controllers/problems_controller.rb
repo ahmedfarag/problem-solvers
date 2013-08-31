@@ -42,4 +42,26 @@ class ProblemsController < ApplicationController
 
   def destroy
   end
+
+  def explanations
+   
+    @problem = Problem.find(params[:id])
+     @title = "Explanations for " 
+    @data = @problem.explanations.paginate(page: params[:page])
+    render 'show_data'
+  end
+
+  def hints
+    @problem = Problem.find(params[:id])
+    @title = "Hints for "
+    @data = @problem.hints.paginate(page: params[:page])
+    render 'show_data'
+  end
+
+  def solutions
+    @problem = Problem.find(params[:id])
+    @title = "Solutions for "
+    @data = @problem.solutions.paginate(page: params[:page])
+    render 'show_data'
+  end
 end

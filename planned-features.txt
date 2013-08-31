@@ -12,6 +12,11 @@ features:
 - urls contains names
 - ask for a solution/explanation/hint permission/creation 
 - notification system
+- save a time when the user will be available to do more actions
+- get the counts of problems solved by each user
+- more advanced search
+- after getting accepted in a certain problem, allow the user to see solutions without any price
+- 
 bugs:
 - hall of fame, follow/unfollow 
 

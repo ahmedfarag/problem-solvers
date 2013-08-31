@@ -1,0 +1,8 @@
+
+    <% if @data.any? %>
+      <ul class="items_container">
+        <h3><%= @title %> <%= link_to(@problem.name, problem_path(@problem), style:"color:#999999;")%></h3>
+        <%= render @data %>
+      </ul>
+      <%= will_paginate @data %>
+      <% end %>
