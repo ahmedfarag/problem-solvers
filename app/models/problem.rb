@@ -10,13 +10,20 @@ class Problem < ActiveRecord::Base
 
 
   validates :link, presence:   true, uniqueness: { case_sensitive: false }
-
+  validates :name, presence: true
+  validates :online_judge_id, presence: true
+  
   def self.search(search)
   	if search
     	find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
   	else
     	find(:all)
   	end
+  end
+
+  def public_solutions(user_id)
+
+    solutions.select { |s| !s.private || s.user_id == user_id}  
   end
 end
 # == Schema Information

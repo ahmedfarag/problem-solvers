@@ -1,2 +1,28 @@
-<h1>Hints#edit</h1>
-<p>Find me in app/views/hints/edit.html.erb</p>
+
+<%= provide(:title, 'Edit a hint') %>
+<h1>Edit a hint for <%= link_to @hint.problem.name, problem_path(@hint.problem) %></h1>
+
+
+<%= form_for(@hint) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.hidden_field :problem_id %>
+  <%= f.hidden_field :user_id %>
+
+	<%= f.label :title %>
+  <%= f.text_field :title%>
+
+  <%= f.label :content %>
+  <%= f.text_area :content%>
+
+  <%= f.label :clarity %>
+  <%= f.select :clarity, 
+  [	["Doesn't expose a lot from the idea",0],
+   	["Exposes a small part of the idea" ,1],
+	["Exposes half the idea", 2],
+	["Exposes more than half the idea, but not all of it", 3],
+	["Exposes the whole idea", 4]
+]
+   %>
+  
+  <%= f.submit "Add Hint", :class => "btn btn-large btn-primary green", id: "submitSol" %>
+<% end %>

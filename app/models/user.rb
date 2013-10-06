@@ -90,7 +90,10 @@ class User < ActiveRecord::Base
 
     return score.points
   end
-  
+
+  def public_solutions
+    solutions.select { |s| !s.private}  
+  end
   private
     
     def create_remember_token

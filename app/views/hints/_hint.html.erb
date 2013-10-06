@@ -1,24 +1,32 @@
 <% @clarity = [ "Doesn't expose a lot from the idea", "Exposes a small part of the idea", "Exposes half the idea", "Exposes more than half the idea, but not all of it",  "Exposes the whole idea"]
+	@colors_of_clarity = ["F2FA00","FAC800","FF9D00","FF6200" ,"FF0000"]
 	%>
 <hr class="special_hr"/>
-<div  class="item" onclick="redirect_to('<%=hint_path(hint)%>')">
+<div  class="item">
 
 	<a href="<%= user_path(hint.user) %>">
 	  <%= gravatar_for hint.user, size: 50 %>
 	</a>
-	<h1>
-	  <%= link_to hint.user.name, user_path(hint.user) %>
-	</h1>
+
 	<!-- <span>
 	  <%= pluralize(hint.user.microposts.count, "micropost") %>
 	</span> -->
-	<h2><%= hint.title %></h2>
+
 	<div class="delete_div">
 	  <% if current_user?(hint.user) %>
 	    <%= link_to image_tag(asset_path("trash-black.png")), hint, method:  :delete,
-	                                     confirm: "You sure?"%>
+	                                     confirm: "You sure?", title:"Delete"%>
 	  <% end %>
 	</div>
+	<div class="delete_div">
+
+	  <% if current_user?(hint.user) %>
+	    <%= link_to image_tag(asset_path("edit-icon.png")), edit_hint_path(hint), title:"Edit"%>
+	  <% end %>
+	</div>
+
+<h2><%= link_to "Hint", hint_path(hint) , style:"float:none"%> for <%= link_to hint.problem.name.first(10) + (hint.problem.name.length > 10 ? "..." : "") , problem_path(hint.problem), style:"float:none" %></h2>
+
 	<div  id="rateMe">
 		<a class="not-colored" id="avg_hint_<%=hint.id%>_1"></a>
 	    <a class="not-colored" id="avg_hint_<%=hint.id%>_2"></a>
@@ -26,9 +34,8 @@
 	    <a class="not-colored" id="avg_hint_<%=hint.id%>_4"></a>
 	    <a class="not-colored" id="avg_hint_<%=hint.id%>_5"></a>
 	</div>
-	<div class="clearity_level">
-		<%= @clarity[hint.clarity] %>
-	</div>
+<i class="foundicon-graph", style="opacity:<%=hint.clarity * 0.2 + 0.2%>;color:red;float:right;margin-top:17px;font-size:32px;margin-left:4px;margin-right:4px;" title="<%= @clarity[hint.clarity] %>"></i>
+	
 </div>
 
 <% if hint.average_ratings > 0 %>

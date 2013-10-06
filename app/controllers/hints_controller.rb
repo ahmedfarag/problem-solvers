@@ -1,6 +1,9 @@
 class HintsController < ApplicationController
-   before_filter :signed_in_user, 
+    before_filter :signed_in_user, 
                 only: [:edit, :update, :create, :new, :destroy] 
+
+  before_filter :correct_user,   only: [:edit, :update, :destroy]
+  
  def new
     @hint = Hint.new(problem_id: params[:problem_id], user_id: current_user.id)
    
@@ -28,12 +31,19 @@ class HintsController < ApplicationController
 
 
   def edit
+
   end
 
   def update
+    if @hint.update_attributes(params[:hint])
+      flash[:success] = "The hint was updated successfully"
+      redirect_to @hint
+    else
+      render 'edit'
+    end
   end
 
-  before_filter :correct_user,   only: :destroy
+  
   
   def destroy
     @hint.destroy
@@ -43,7 +53,13 @@ class HintsController < ApplicationController
   end
 
   private
-
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
+    end
+    
     def correct_user
       @hint = current_user.hints.find_by_id(params[:id])
       redirect_to root_path if @hint.nil?

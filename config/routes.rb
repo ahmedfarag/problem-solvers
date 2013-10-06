@@ -25,13 +25,14 @@ SampleApp::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   resources :problems, only: [:show, :create, :index]
-  resources :solutions, only: [:new, :show, :create, :index, :destroy]
+  resources :solutions, only: [:new, :show, :create, :index, :destroy, :edit, :update]
   resources :reviews, only: [:create]
-  resources :explanations, only: [:index, :show, :create, :new, :destroy]
-  resources :hints, only: [:create, :new, :show, :destroy]
+  resources :explanations, only: [:index, :show, :create, :new, :destroy, :edit, :update]
+  resources :hints, only: [:create, :new, :show, :destroy, :edit, :update]
   resources :categories, only: [:index, :show, :create, :new]
   resources :online_judges, only: [:new, :show, :create, :index]
   resources :category_relations, only: [:create, :new, :destroy]
+  resources :languages, only: [:index]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

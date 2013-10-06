@@ -1,2 +1,28 @@
-<h1>Solutions#edit</h1>
-<p>Find me in app/views/solutions/edit.html.erb</p>
+
+<%= provide(:title, 'Add a solution') %>
+<h1>Edit a solution for <%= link_to @problem.name, problem_path(@problem) %></h1>
+
+
+<%= form_for(@solution) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.hidden_field :problem_id %>
+
+  <%= f.label :code %>
+  <%= f.text_area :code , id:"code_area" %>
+
+  <%= f.label :language_id, "Language" %>
+  <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"), onchange:"language_changed()" %>
+  
+  <div style="width:100%;height:30px;">
+  	<%= f.label :accepted, "This solution got accepted?", style:"width:200px;float:left;" %>
+  	<%= f.check_box :accepted, style:"float:left;" %>
+
+  </div>
+<div style="width:100%;height:30px;">
+    <%= f.label :private, "Make this solution private?", style:"width:200px;float:left;" %>
+    <%= f.check_box :private, style:"float:left;" %>
+ 
+  </div>
+
+  <%= f.submit "Save Solution", :class => "btn btn-large btn-primary green", id: "submitSol" %>
+<% end %>

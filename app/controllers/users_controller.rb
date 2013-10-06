@@ -36,6 +36,7 @@ class UsersController < ApplicationController
   def solutions
     @title = "Solutions"
     @user = User.find(params[:id])
+    # @data = current_user?(@user) ? @user.solutions : @user.public_solutions
     @data = @user.solutions.paginate(page: params[:page])
     render 'show_data'
   end

@@ -35,7 +35,7 @@
 	h2{
 		line-height: 50px;
 		float: left;
-		margin: 0 0 0 20px;
+		margin: 0 0 0 5px;
 	}
 	span{
 		float:left;
@@ -53,8 +53,7 @@
 
 .item:hover{
 		background-color: #ccc;
-		cursor: hand;
-  	cursor: pointer;
+
 	}
 
 .item_button{
@@ -155,3 +154,4 @@
 	cursor: hand;
   	cursor: pointer;
 }
+

@@ -1,6 +1,8 @@
 class ExplanationsController < ApplicationController
  before_filter :signed_in_user, 
                 only: [:edit, :update, :create, :new, :destroy] 
+
+  before_filter :correct_user,   only: [:edit, :update, :destroy]
   
                 
   def index
@@ -17,15 +19,16 @@ class ExplanationsController < ApplicationController
   end
 
   def create
-    @exp = Explanation.new(params[:explanation])
-    @exp.user = current_user
+    @explanation = Explanation.new(params[:explanation])
+    @explanation.user = current_user
     
-    if @exp.save
-      current_user.post("Just added an [[#{explanation_path(@exp)},explanation]] for [[#{problem_path(@exp.problem)},#{@exp.problem.name}]] problem.")
+    if @explanation.save
+      current_user.post("Just added an [[#{explanation_path(@explanation)},explanation]] for [[#{problem_path(@explanation.problem)},#{@explanation.problem.name}]] problem.")
       current_user.add_to_score(100)
       flash[:success] = "Your Explanation was submitted successfully, +100 points ;)"
-      redirect_to @exp
+      redirect_to @explanation
     else
+      @problem = @explanation.problem
       render 'new'
     end
 
@@ -34,21 +37,33 @@ class ExplanationsController < ApplicationController
   
 
   def edit
+    @problem = @explanation.problem
   end
 
   def update
+    if @explanation.update_attributes(params[:explanation])
+      flash[:success] = "The explanation was updated successfully"
+      redirect_to @explanation
+    else
+      render 'edit'
+    end
   end
-
-  before_filter :correct_user,   only: :destroy
 
   def destroy
     @explanation.destroy
     current_user.add_to_score(-100)
-    flash[:success] = "Your Explanation was deleted successfully, -100 points :("
+    flash[:success] = "Your explanation was deleted successfully, -100 points :("
     redirect_to :back
   end
 
   private
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
+    end
 
     def correct_user
       @explanation = current_user.explanations.find_by_id(params[:id])

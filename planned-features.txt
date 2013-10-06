@@ -1,4 +1,7 @@
 features:
+- add verifications on the persestence of data for every thing
+- add links from the newly added accepted solution to give hints, or make an explanation
+- make a share button for solutions/explanations/..
 - add a problem using link
 - see all in problem sections
 - extension popup with data
@@ -18,6 +21,7 @@ features:
 - after getting accepted in a certain problem, allow the user to see solutions without any price
 - 
 bugs:
+- when not logged in and u save a solution, it redirects using get to /solutions
 - hall of fame, follow/unfollow 
-
+- when problem name has a comma, it'll be a bug in the news feed
 - opening problem twice b4 being created -- no duplicates -- ignored

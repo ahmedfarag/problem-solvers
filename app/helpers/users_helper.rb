@@ -5,7 +5,7 @@ module UsersHelper
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     size = options[:size]
     gravatar_url = "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
-    image_tag(gravatar_url, alt: user.name, class: "gravatar circular", style:"width:#{size}px;height:#{size}px;")
+    image_tag(gravatar_url, alt: user.name, class: "gravatar circular", style:"width:#{size}px;height:#{size}px;", title:user.name)
   end
 end
 

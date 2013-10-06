@@ -3,7 +3,7 @@
 
 
 
-<h3><%= @solution.language.name %></h3>
+<h3>Written in <%= @solution.language.name %></h3>
 <% if @solution.accepted %>
 <p class="accepted_color">This solution got accepted from the judge</p>
 <% else %>
@@ -17,7 +17,17 @@
     <a class="not-colored" id="avg_5"></a>
 </div>
 <span  id="reviews_cnt" style="line-height:25px;margin-left:6px;"></span>
-
+<% if @solution.private %>
+<p class="wrong_answer_color">This solution is private</p>
+	<%= form_for(@solution) do |f| %>
+		<%= f.hidden_field :private, value:false  %>
+		<%= f.label "Get 50 points for making it public"%>
+	  <%= f.submit "Make public", :class => "btn btn-large btn-primary" %>
+	  
+	<% end %>
+<% else %>
+<p class="accepted_color">This solution is public</p>
+<% end %>
 <pre style="margin-top:10px;" class="prettyprint lang-<%= @solution.language.name.sub("++","pp").downcase %>">
   <%= @solution.code %>
 </pre>
@@ -55,7 +65,7 @@
 
 <% if  @solution.average_ratings > 0 %>
 <script type="text/javascript" language="javascript" >
-	$("#reviews_cnt").html("by <%= pluralize @solution.reviews.count, 'user' %>" );
+		$("#reviews_cnt").html("by <%= pluralize @solution.reviews.count, 'user' %>" );
 	sol_id = "avg_<%= @solution.average_ratings %>";
 
 	my_this = document.getElementById(sol_id);
@@ -64,7 +74,10 @@
 	
 	off(my_this);
 </script>
-
+<% else %>
+	<script type="text/javascript" language="javascript" >
+		$("#reviews_cnt").html("Not Rated");
+	</script>
 <% end %>
 
 

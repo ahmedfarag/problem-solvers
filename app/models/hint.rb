@@ -5,6 +5,11 @@ class Hint < ActiveRecord::Base
   has_many :reviews, as: :reviewable
   has_many :comments, as: :commentable
 
+  validates :content, presence: true
+  validates :clarity, presence: true
+  validates :problem_id, presence: true
+  validates :user_id, presence: true
+
   def average_ratings
 	sum = 0
 	reviews.each do |rat|

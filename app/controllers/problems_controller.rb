@@ -60,7 +60,7 @@ class ProblemsController < ApplicationController
   def solutions
     @problem = Problem.find(params[:id])
     @title = "Solutions for "
-    @data = @problem.solutions.paginate(page: params[:page])
+    @data = @problem.public_solutions(current_user.id).paginate(page: params[:page])
     render 'show_data'
   end
 

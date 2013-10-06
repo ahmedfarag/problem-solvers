@@ -1,20 +1,28 @@
 <hr class="special_hr"/>
-<div class="item" onclick="redirect_to('<%=solution_path(solution)%>')">
+<div class="item">
 
 <a href="<%= user_path(solution.user) %>">
   <%= gravatar_for solution.user, size: 50 %>
 </a>
-<h1>
+<%= image_tag asset_path(solution.language.logo), title:solution.language.name , style:"float:left;margin-top:4px;"%>
+
+<!-- <h1>
   <%= link_to solution.user.name, user_path(solution.user) %>
-</h1>
+</h1> -->
 <!-- <span>
   <%= pluralize(solution.user.microposts.count, "micropost") %>
 </span> -->
-<h2><%= solution.title %></h2>
+
 	<div class="delete_div">
 	  <% if current_user?(solution.user) %>
 	    <%= link_to image_tag(asset_path("trash-black.png")), solution, method:  :delete,
-	                                     confirm: "You sure?"%>
+	                                     confirm: "You sure?", title:"Delete"%>
+	  <% end %>
+	</div>
+	<div class="delete_div">
+
+	  <% if current_user?(solution.user) %>
+	    <%= link_to image_tag(asset_path("edit-icon.png")), edit_solution_path(solution), title:"Edit"%>
 	  <% end %>
 	</div>
 	<div  id="rateMe">
@@ -25,8 +33,24 @@
 	    <a class="not-colored" id="avg_solution_<%=solution.id%>_5"></a>
 	</div>
 
-<h2> <%= solution.language.name %> </h2>
-<%= image_tag asset_path(solution.language.logo) %>
+
+<h2><%= link_to "Solution", solution_path(solution) , style:"float:none"%> for <%= link_to solution.problem.name.first(16) + (solution.problem.name.length > 16 ? "..." : "") , problem_path(solution.problem), style:"float:none" %></h2>
+
+
+
+
+<% if solution.private %>
+	<i class="foundicon-minus", style="color:red;float:right;margin-top:17px;font-size:20px;margin-left:4px;margin-right:4px;" title="private"></i>
+<% else %>
+	<i class="foundicon-globe", style="color:green;float:right;margin-top:17px;font-size:20px;margin-left:4px;margin-right:4px;" title="public"></i>
+<% end %>
+
+<% if solution.accepted %>
+	<i class="foundicon-checkmark", style="color:green;float:right;margin-top:17px;font-size:20px;" title="Accepted"></i>
+<% else %>
+	<i class="foundicon-remove", style="color:red;float:right;margin-top:17px;font-size:20px;" title="Wrong answer"></i>
+<% end %>
+
 </div>
 
 

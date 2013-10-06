@@ -31,7 +31,7 @@
 
 <div class="items_container">
 <h3>Solutions</h3>
-<%= @problem.solutions.count > 0 ? (render @problem.solutions) : "<p>&emsp;No Solutions for this problem, be the first to add one ;)</p>".html_safe %>
+<%= @problem.solutions.count > 0 ? (render @problem.public_solutions(current_user.id)) : "<p>&emsp;No Solutions for this problem, be the first to add one ;)</p>".html_safe %>
 <% if signed_in? %>
 		<hr class="special_hr"/>
 		<span class="item item_button" onclick="redirect_to('<%= new_solution_path problem_id: @problem.id%>')"><h2>Add Solution</h2></span>

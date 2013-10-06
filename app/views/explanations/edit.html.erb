@@ -1,2 +1,17 @@
-<h1>Explanations#edit</h1>
-<p>Find me in app/views/explanations/edit.html.erb</p>
+
+<%= provide(:title, 'Edit an explanation') %>
+<h1>Edit an explanation for <%= link_to @problem.name, @problem.link %></h1>
+
+
+<%= form_for(@explanation) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.hidden_field :problem_id %>
+  <%= f.hidden_field :user_id %>
+
+
+  <%= f.label :content %>
+  <%= f.text_area :content, class: "ckeditor"%>
+
+  
+  <%= f.submit "Save Explanation", :class => "btn btn-large btn-primary green", id: "submitSol" %>
+<% end %>

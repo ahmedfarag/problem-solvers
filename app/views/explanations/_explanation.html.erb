@@ -1,22 +1,31 @@
 <hr class="special_hr"/>
-<div class="item" onclick="redirect_to('<%=explanation_path(explanation)%>')">
+<div class="item">
 
 <a href="<%= user_path(explanation.user) %>">
   <%= gravatar_for explanation.user, size: 50 %>
 </a>
-<h1>
-  <%= link_to explanation.user.name, user_path(explanation.user) %>
-</h1>
+
 <!-- <span>
   <%= pluralize(explanation.user.microposts.count, "micropost") %>
 </span> -->
-	<h2><%= explanation.title %></h2>
+
 	<div class="delete_div">
 	  <% if current_user?(explanation.user) %>
 	    <%= link_to image_tag(asset_path("trash-black.png")), explanation, method:  :delete,
-	                                     confirm: "You sure?"%>
+	                                     confirm: "You sure?", title:"Delete"%>
 	  <% end %>
 	</div>
+
+	<div class="delete_div">
+
+	  <% if current_user?(explanation.user) %>
+	    <%= link_to image_tag(asset_path("edit-icon.png")), edit_explanation_path(explanation), title:"Edit"%>
+	  <% end %>
+	</div>
+
+<h2><%= link_to "Explanation", explanation_path(explanation) , style:"float:none"%> for <%= link_to explanation.problem.name.first(16) + (explanation.problem.name.length > 16 ? "..." : "") , problem_path(explanation.problem), style:"float:none" %></h2>
+
+
 	<div  id="rateMe">
 	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_1"></a>
 	    <a class="not-colored" id="avg_explanation_<%=explanation.id%>_2"></a>

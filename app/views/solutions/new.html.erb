@@ -16,7 +16,13 @@
   <div style="width:100%;height:30px;">
   	<%= f.label :accepted, "This solution got accepted?", style:"width:200px;float:left;" %>
   	<%= f.check_box :accepted, style:"float:left;" %>
+
   </div>
-  
+<div style="width:100%;height:30px;">
+    <%= f.label :private, "Make this solution private?", style:"width:200px;float:left;" %>
+    <%= f.check_box :private, style:"float:left;" %>
+ 
+  </div>
+
   <%= f.submit "Save Solution", :class => "btn btn-large btn-primary green", id: "submitSol" %>
 <% end %>
