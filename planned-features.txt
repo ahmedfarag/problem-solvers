@@ -1,17 +1,16 @@
 features:
-- add verifications on the persestence of data for every thing
+- make ext. recognizes our problem pages as problems
+- popup styles
 - add links from the newly added accepted solution to give hints, or make an explanation
 - make a share button for solutions/explanations/..
 - add a problem using link
 - see all in problem sections
-- extension popup with data
-- extenstion detects submits
 - connect with facebook/google+/twitter
 - user restrictions
-- private solutions
+
 - explain scoring system
-- solution item clickables
-- enhance borders of problem show
+
+
 - urls contains names
 - ask for a solution/explanation/hint permission/creation 
 - notification system
@@ -25,3 +24,12 @@ bugs:
 - hall of fame, follow/unfollow 
 - when problem name has a comma, it'll be a bug in the news feed
 - opening problem twice b4 being created -- no duplicates -- ignored
+
+
+done:
+
+- extension popup with data
+- extenstion detects submits
+- private solutions
+- solution item clickables
+- enhance borders of problem show

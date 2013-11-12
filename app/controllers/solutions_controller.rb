@@ -4,6 +4,7 @@ class SolutionsController < ApplicationController
 
   before_filter :correct_user,   only: [:edit, :update, :destroy]
   
+  
   def index
     @solutions = Solution.find_all_by_user_id(current_user.id)
   end
@@ -27,7 +28,7 @@ class SolutionsController < ApplicationController
     @solution.user = current_user
     
     if @solution.save
-      current_user.post("Just added a #{@solution.language.name} [[#{solution_path(@sol)},solution]] for [[#{problem_path(@sol.problem)},#{@sol.problem.name}]] problem.")
+      current_user.post("Just added a #{@solution.language.name} [[#{solution_path(@solution)},solution]] for [[#{problem_path(@solution.problem)},#{@solution.problem.name}]] problem.")
       current_user.add_to_score(50) unless @solution.private
       flash[:success] = "Your Solution was submitted successfully"
       flash[:success] += ", +50 points ;)" unless @solution.private

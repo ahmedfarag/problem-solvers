@@ -25,7 +25,7 @@ SampleApp::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   resources :problems, only: [:show, :create, :index]
-  resources :solutions, only: [:new, :show, :create, :index, :destroy, :edit, :update]
+  
   resources :reviews, only: [:create]
   resources :explanations, only: [:index, :show, :create, :new, :destroy, :edit, :update]
   resources :hints, only: [:create, :new, :show, :destroy, :edit, :update]
@@ -33,7 +33,8 @@ SampleApp::Application.routes.draw do
   resources :online_judges, only: [:new, :show, :create, :index]
   resources :category_relations, only: [:create, :new, :destroy]
   resources :languages, only: [:index]
-
+  resources :solutions, only: [:show, :new, :create, :index, :destroy, :edit, :update]
+  
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete

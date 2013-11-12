@@ -1,4 +1,6 @@
 class Hint < ActiveRecord::Base
+  # attr_accessible :content, :clarity
+
   belongs_to :problem
   belongs_to :user
 
