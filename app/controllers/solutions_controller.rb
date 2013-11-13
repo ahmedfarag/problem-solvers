@@ -32,7 +32,7 @@ class SolutionsController < ApplicationController
       current_user.add_to_score(50) unless @solution.private
       flash[:success] = "Your Solution was submitted successfully"
       flash[:success] += ", +50 points ;)" unless @solution.private
-      redirect_to @solution
+      redirect_to solution_path(@solution)
     else
       @problem = @solution.problem
       @languages = Language.all
