@@ -155,3 +155,35 @@
   	cursor: pointer;
 }
 
+/*#share-buttons img {
+width: 35px;
+padding: 5px;
+border: 0;
+box-shadow: 0;
+display: inline;
+}
+*/
+#share-buttons {
+	width: 140px;
+	padding: 4px;
+	border: 1px solid #e0dddd;
+	background-color: #42a7e2;
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; -khtml-border-radius: 10px;  border-radius: 10px; -o-border-radius: 10px;
+}
+#share-buttons img		
+{ 	
+	width: 35px !important;
+	padding: 4px;
+	border:  0;
+	box-shadow: none !important;
+	display: inline;
+	vertical-align: middle;
+}
+#share-buttons, #share-buttons a		
+{
+	;
+	font-family: Indie Flower;
+	font-size: 	20px;
+	color: 		#ffffff!important;
+	font-weight: bold;
+}
