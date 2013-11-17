@@ -2,8 +2,9 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to(image_tag(asset_path("problem-solver-active-32.png"), style:"float:left;margin:4px;"), root_path) %>
-      <%= link_to "Problem Solvers", root_path, id: "logo" %>
+      <!-- <%= link_to(image_tag(asset_path("solve-integrate-logo-40.png"), style:"float:left;"), root_path) %> -->
+      <%= link_to(image_tag(asset_path("solve-integrate-logo-text.png"), style:"float:left;height:40px;"), root_path) %>
+      <!-- <%= link_to "Solve ... Integrate", root_path, id: "logo" %> -->
       <div class="search_box">
         
         <%= form_tag problems_path, :method => 'get' do %>
