@@ -1,6 +1,17 @@
 <h1>Hint for <%= link_to "#{@hint.problem.name}", problem_path(@hint.problem) %></h1>
 <h2>by <%= link_to "#{@hint.user.name}", user_path(@hint.user) %></h2>
 <h2 style="color:orange;">Warning: This hint <%= @clarity[@hint.clarity] %>.</h2>
+<div id="share-buttons"  style="display:block;margin:0 auto 0 auto;">
+	<!-- Facebook -->
+	<a href="http://www.facebook.com/sharer.php?u=<%="#{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>" target="_blank"><img src="<%=asset_path("facebook.png")%>" alt="Facebook" /></a>
+	 
+	<!-- Twitter -->
+	<a href="http://twitter.com/share?url=<%="#{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>&text=<%="Check out this solution #{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>" target="_blank"><img src="<%=asset_path("twitter.png")%>" alt="Twitter" /></a>
+	 
+	<!-- Google+ -->
+	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
+</div>
+
 <p style="float:left;">Average rating: </p>
 <div style="float:left;clear:none;"  id="rateMe">
     <a class="not-colored" id="avg_1"></a>

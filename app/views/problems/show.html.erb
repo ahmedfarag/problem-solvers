@@ -2,7 +2,16 @@
 <h2><%= link_to "Problem link", @problem.link, title:"external link, this will open a new tab", target:"new" %> <%= link_to( image_tag(asset_path("external-link-small.png"), style:"margin-left:14px;width:30px;height:30px;"), @problem.link, title:"external link, this will open a new tab" , target:"new")%></h2>
 
 <!-- <div style="float:left"><iframe class="problem_iframe" id='embedded' src="<%="#{@problem.link}"%>" /></div> -->
-
+<div id="share-buttons" style="display:block;margin:0 auto 10px auto;">
+	<!-- Facebook -->
+	<a href="http://www.facebook.com/sharer.php?u=<%="#{request.protocol}#{request.host}:#{request.port}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("facebook.png")%>" alt="Facebook" /></a>
+	 
+	<!-- Twitter -->
+	<a href="http://twitter.com/share?url=<%="#{request.protocol}#{request.host}:#{request.port}#{problem_path(@problem)}"%>&text=<%="Check out this solution #{request.protocol}#{request.host}:#{request.port}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("twitter.png")%>" alt="Twitter" /></a>
+	 
+	<!-- Google+ -->
+	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}:#{request.port}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
+</div>
 <div class="items_container">
 	<h3>Categories</h3>
 	<%= @problem.category_relations.count > 0 ? (render @problem.category_relations) : "<p>&emsp;No Categories for this problem, be the first to add one ;)</p>".html_safe %>
