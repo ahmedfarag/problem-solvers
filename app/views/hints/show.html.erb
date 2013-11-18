@@ -3,13 +3,13 @@
 <h2 style="color:orange;">Warning: This hint <%= @clarity[@hint.clarity] %>.</h2>
 <div id="share-buttons"  style="display:block;margin:0 auto 0 auto;">
 	<!-- Facebook -->
-	<a href="http://www.facebook.com/sharer.php?u=<%="#{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>" target="_blank"><img src="<%=asset_path("facebook.png")%>" alt="Facebook" /></a>
+	<a href="http://www.facebook.com/sharer.php?u=<%="#{request.protocol}#{request.host}#{hint_path(@hint)}"%>" target="_blank"><img src="<%=asset_path("facebook.png")%>" alt="Facebook" /></a>
 	 
 	<!-- Twitter -->
-	<a href="http://twitter.com/share?url=<%="#{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>&text=<%="Check out this solution #{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>" target="_blank"><img src="<%=asset_path("twitter.png")%>" alt="Twitter" /></a>
+	<a href="http://twitter.com/share?url=<%="#{request.protocol}#{request.host}#{hint_path(@hint)}"%>&text=<%="Check out this hint "%>" target="_blank"><img src="<%=asset_path("twitter.png")%>" alt="Twitter" /></a>
 	 
 	<!-- Google+ -->
-	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
+	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}#{hint_path(@hint)}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
 </div>
 
 <p style="float:left;">Average rating: </p>

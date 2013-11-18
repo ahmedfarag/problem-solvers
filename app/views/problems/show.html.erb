@@ -4,13 +4,13 @@
 <!-- <div style="float:left"><iframe class="problem_iframe" id='embedded' src="<%="#{@problem.link}"%>" /></div> -->
 <div id="share-buttons" style="display:block;margin:0 auto 10px auto;">
 	<!-- Facebook -->
-	<a href="http://www.facebook.com/sharer.php?u=<%="#{request.protocol}#{request.host}:#{request.port}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("facebook.png")%>" alt="Facebook" /></a>
+	<a href="http://www.facebook.com/sharer.php?u=<%="#{request.protocol}#{request.host}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("facebook.png")%>" alt="Facebook" /></a>
 	 
 	<!-- Twitter -->
-	<a href="http://twitter.com/share?url=<%="#{request.protocol}#{request.host}:#{request.port}#{problem_path(@problem)}"%>&text=<%="Check out this solution #{request.protocol}#{request.host}:#{request.port}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("twitter.png")%>" alt="Twitter" /></a>
+	<a href="http://twitter.com/share?url=<%="#{request.protocol}#{request.host}#{problem_path(@problem)}"%>&text=<%="Check out this problem "%>" target="_blank"><img src="<%=asset_path("twitter.png")%>" alt="Twitter" /></a>
 	 
 	<!-- Google+ -->
-	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}:#{request.port}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
+	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
 </div>
 <div class="items_container">
 	<h3>Categories</h3>
