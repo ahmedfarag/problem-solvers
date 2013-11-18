@@ -32,6 +32,7 @@ class SolutionsController < ApplicationController
       current_user.add_to_score(50) unless @solution.private
       flash[:success] = "Your Solution was submitted successfully"
       flash[:success] += ", +50 points ;)" unless @solution.private
+      flash[:success] += "  ... you may consider explaining the problem (+100), giving hints (+10), adding categories (+5)" if @solution.accepted
       redirect_to solution_path(@solution)
     else
       @problem = @solution.problem

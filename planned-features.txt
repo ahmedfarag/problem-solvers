@@ -1,5 +1,5 @@
 features:
-- make a share button for solutions/explanations/..
+
 - add links from the newly added accepted solution to give hints, or make an explanation
 - explain scoring system
 - see all in problem sections
@@ -11,7 +11,7 @@ features:
 
 - connect with facebook/google+/twitter
 
-- user restrictions
+- user restrictions while openining materials
 - 	save a time when the user will be available to do more actions
 - 	after getting accepted in a certain problem, allow the user to see solutions without any price
 
@@ -38,7 +38,7 @@ done:
 - private solutions
 - solution item clickables
 - enhance borders of problem show
-
+- make a share button for solutions/explanations/..
 
 name:
 solvers community - problem solvers
