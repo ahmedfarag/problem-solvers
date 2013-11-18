@@ -13,9 +13,9 @@ class HintsController < ApplicationController
     @hint = Hint.new (params[:hint])
     
     if @hint.save
-      current_user.post("Just added a [[#{hint_path(@hint)},hint]] for [[#{problem_path(@hint.problem)},#{@hint.problem.name}]] problem.")
+      current_user.post("Just added a [[#{hint_path(@hint)}&-*^hint]] for [[#{problem_path(@hint.problem)}&-*^#{@hint.problem.name}]] problem.")
       current_user.add_to_score(10)
-      flash[:success] = "Your hint was added successfully, +10 points :("
+      flash[:success] = "Your hint was added successfully, +10 points :)"
       redirect_to @hint.problem
     else
        render 'new'

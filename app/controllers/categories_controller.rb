@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   	 @cat = Category.new(params[:category])
     
     if @cat.save
-      current_user.post("Just added a category named [[#{category_path(@cat)},#{@cat.name}]] ")
+      current_user.post("Just added a category named [[#{category_path(@cat)}&-*^#{@cat.name}]] ")
       current_user.add_to_score(5)
       flash[:success] = "Your Category was added successfully, +5 points"
       redirect_to @cat

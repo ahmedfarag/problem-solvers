@@ -23,7 +23,7 @@ class ExplanationsController < ApplicationController
     @explanation.user = current_user
     
     if @explanation.save
-      current_user.post("Just added an [[#{explanation_path(@explanation)},explanation]] for [[#{problem_path(@explanation.problem)},#{@explanation.problem.name}]] problem.")
+      current_user.post("Just added an [[#{explanation_path(@explanation)}&-*^explanation]] for [[#{problem_path(@explanation.problem)}&-*^#{@explanation.problem.name}]] problem.")
       current_user.add_to_score(100)
       flash[:success] = "Your Explanation was submitted successfully, +100 points ;)"
       redirect_to @explanation
