@@ -1,28 +1,23 @@
 features:
-
-- add links from the newly added accepted solution to give hints, or make an explanation
-- explain scoring system
-- see all in problem sections
 - make ext. recognizes our problem pages as problems
 - popup styles
-
-
+- add links from the newly added accepted solution to give hints, or make an explanation
+- make a share button for solutions/explanations/..
 - add a problem using link
-
+- see all in problem sections
 - connect with facebook/google+/twitter
+- user restrictions
 
-- user restrictions while openining materials
-- 	save a time when the user will be available to do more actions
-- 	after getting accepted in a certain problem, allow the user to see solutions without any price
+- explain scoring system
 
 
 - urls contains names
 - ask for a solution/explanation/hint permission/creation 
 - notification system
-
+- save a time when the user will be available to do more actions
 - get the counts of problems solved by each user
 - more advanced search
-
+- after getting accepted in a certain problem, allow the user to see solutions without any price
 - 
 bugs:
 - when not logged in and u save a solution, it redirects using get to /solutions
@@ -38,7 +33,7 @@ done:
 - private solutions
 - solution item clickables
 - enhance borders of problem show
-- make a share button for solutions/explanations/..
+
 
 name:
 solvers community - problem solvers
@@ -46,5 +41,5 @@ problematician.com
 solveintegrate
 
 extra features:
-- training planning
-- TODO list of problems u need to solve (can be added by you, your coach) (can be sorted by the most solved by your friends, their level of hardness)
+- training planning by coaches (requires Groups, category explanations)
+- TODO list of problems u need to solve (can be added by you, your coach) (can be sorted by the most solved by your friends, their level of hardness-implied from problem statistics)

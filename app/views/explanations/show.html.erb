@@ -1,5 +1,5 @@
 
-<h1>Explanation for <%= link_to "#{@explanation.problem.name}", problem_path(@explanation.problem) %></h1>
+<h1><%= link_to "Explanation", explanation_path(@explanation) %> for <%= link_to "#{@explanation.problem.name}", problem_path(@explanation.problem) %></h1>
 <h2>by <%= link_to "#{@explanation.user.name}", user_path(@explanation.user) %></h2>
 
 <div id="share-buttons"  style="display:block;margin:0 auto 0 auto;">

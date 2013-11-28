@@ -1,7 +1,7 @@
 <li>
   <%= gravatar_for user, size: 52 %>
   <%= link_to user.name, user %>
-<div id="follow_form_<%=user.id%>" class="follow_form"><%= render :partial => "users/follow_form", object: user, as: :user  if signed_in? %></div>
+<div class="follow_form follow_form_<%=user.id%>"><%= render :partial => "users/follow_form", object: user, as: :user  if signed_in? %></div>
 
  <section style="width:280px;">
       <%= render :partial => 'shared/stats', object: user, as: :user %>

@@ -1,6 +1,6 @@
 
-$("#follow_form_<%=@user.id%>").html("<%= escape_javascript(render( :partial => "users/follow", object: @user, as: :user )) %>")
+$(".follow_form_<%=@user.id%>").html("<%= escape_javascript(render( :partial => "users/follow", object: @user, as: :user )) %>")
 
-$("#followers_count_<%=@user.id%>").html('<%=@user.followers.count%>')
+$(".followers_count_<%=@user.id%>").html('<%=@user.followers.count%>')
 
-$("#following_count_<%=current_user.id%>").html('<%=current_user.followed_users.count %>')
+$(".following_count_<%=current_user.id%>").html('<%=current_user.followed_users.count %>')

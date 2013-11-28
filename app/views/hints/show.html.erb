@@ -1,4 +1,4 @@
-<h1>Hint for <%= link_to "#{@hint.problem.name}", problem_path(@hint.problem) %></h1>
+<h1><%= link_to "Hint", hint_path(@hint) %> for <%= link_to "#{@hint.problem.name}", problem_path(@hint.problem) %></h1>
 <h2>by <%= link_to "#{@hint.user.name}", user_path(@hint.user) %></h2>
 <h2 style="color:orange;">Warning: This hint <%= @clarity[@hint.clarity] %>.</h2>
 <div id="share-buttons"  style="display:block;margin:0 auto 0 auto;">

@@ -8,7 +8,7 @@
   <%= link_to user.name, user_path(user) %>
 </h1>
 <div class="user_item_follow_container">
-<div id="follow_form_<%=user.id%>" class="follow_form"><%= render :partial => "users/follow_form", object: user, as: :user  if signed_in? %></div>
+<div class="follow_form follow_form_<%=user.id%>"><%= render :partial => "users/follow_form", object: user, as: :user  if signed_in? %></div>
 </div>
 	<div class="user_item_stats">
   <a href="<%=user_path(user)  %>">
