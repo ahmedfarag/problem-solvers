@@ -1,6 +1,6 @@
 
 <%= provide(:title, 'Add an explanation') %>
-<h1>Add an explanation for <%= link_to @problem.name, @problem.link %></h1>
+<h1>Add an explanation for <%= link_to @problem.name, problem_path(@problem) %></h1>
 
 
 <%= form_for(@explanation) do |f| %>

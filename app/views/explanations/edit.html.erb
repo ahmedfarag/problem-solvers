@@ -1,6 +1,6 @@
 
 <%= provide(:title, 'Edit an explanation') %>
-<h1>Edit an explanation for <%= link_to @problem.name, @problem.link %></h1>
+<h1>Edit an explanation for <%= link_to @problem.name, problem_path(@problem) %></h1>
 
 
 <%= form_for(@explanation) do |f| %>
@@ -13,5 +13,5 @@
   <%= f.text_area :content, class: "ckeditor"%>
 
   
-  <%= f.submit "Save Explanation", :class => "btn btn-large btn-primary green", id: "submitSol" %>
+  <%= f.submit "Save Explanation", :class => "btn btn-large btn-primary green", id: "submitSol", style: "margin-top:10px;" %>
 <% end %>
