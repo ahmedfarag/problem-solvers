@@ -1,4 +1,17 @@
 
+    <div class="delete_div">
+      <% if current_user?(@explanation.user) %>
+        <%= link_to image_tag(asset_path("trash-black.png")), @explanation, method:  :delete,
+                                         confirm: "You sure?", title:"Delete"%>
+      <% end %>
+    </div>
+
+    <div class="delete_div">
+
+      <% if current_user?(@explanation.user) %>
+        <%= link_to image_tag(asset_path("edit-icon.png")), edit_explanation_path(@explanation), title:"Edit"%>
+      <% end %>
+    </div>
 <h1><%= link_to "Explanation", explanation_path(@explanation) %> for <%= link_to "#{@explanation.problem.name}", problem_path(@explanation.problem) %></h1>
 <h2>by <%= link_to "#{@explanation.user.name}", user_path(@explanation.user) %></h2>
 

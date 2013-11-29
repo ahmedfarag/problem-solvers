@@ -76,11 +76,16 @@ class SolutionsController < ApplicationController
     flash[:success] = "Your Solution was deleted successfully"
     current_user.add_to_score(-50) unless @solution.private
     flash[:success] += ", -50 points :(" unless @solution.private
-
+    sol_path = solution_path(@solution)
     @solution.destroy
     
-    
-    redirect_to :back
+    # if request.env['HTTP_REFERER'] and request.env['HTTP_REFERER'] != sol_path
+    #   redirect_to :back
+    # else
+    #   redirect_to root_path
+    # end
+    redirect_to solutions_user_path(current_user)
+    # redirect_to request.env['HTTP_REFERER'] == sol_path ? root_path : :back
   end
 
   private

@@ -1,4 +1,8 @@
 class CategoryRelationsController < ApplicationController
+  before_filter :signed_in_user, 
+                only: [:create, :new, :destroy] 
+  before_filter :correct_user,   only: [:destroy]
+  
   def new
     @rel = CategoryRelation.new (params[:categorizable])
     @categories = Category.all
@@ -30,10 +34,15 @@ class CategoryRelationsController < ApplicationController
   end
 
   private
-
-    def correct_user
-      @rel = current_user.category_relations.find_by_id(params[:id])
-      redirect_to root_path if @rel.nil?
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
     end
 
+    def correct_user
+      @solution = current_user.solutions.find_by_id(params[:id])
+      redirect_to root_path if @solution.nil?
+    end
 end

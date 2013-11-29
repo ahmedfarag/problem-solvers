@@ -49,7 +49,8 @@ class HintsController < ApplicationController
     @hint.destroy
     current_user.add_to_score(-10)
     flash[:success] = "Your hint was deleted successfully, -10 points :("
-    redirect_to :back
+    # redirect_to :back
+    redirect_to hints_user_path(current_user)
   end
 
   private

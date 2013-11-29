@@ -53,7 +53,8 @@ class ExplanationsController < ApplicationController
     @explanation.destroy
     current_user.add_to_score(-100)
     flash[:success] = "Your explanation was deleted successfully, -100 points :("
-    redirect_to :back
+    # redirect_to :back
+    redirect_to explanations_user_path(current_user)
   end
 
   private
