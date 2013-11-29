@@ -39,7 +39,7 @@
               <%= gravatar_for current_user, size: 40 %>
             </a>
           <% else %>
-            <% session[:return_to] = request.path unless request.path == signin_path %>
+            <% session[:return_to] = request.path unless request.path == signin_path or request.path == sessions_path %>
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
