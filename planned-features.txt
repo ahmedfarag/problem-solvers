@@ -43,3 +43,26 @@ solveintegrate
 extra features:
 - training planning by coaches (requires Groups, category explanations)
 - TODO list of problems u need to solve (can be added by you, your coach) (can be sorted by the most solved by your friends, their level of hardness-implied from problem statistics)
+
+
+
+Solve-Integrate
+
+Description:
+This is a website and a chrome extension to help us get more of the problems we solve, it enables us to save our solutions while submitting it, and accordingly it facilitates the code sharing process, and it'll also enable us to check others hints, explanations, and solutions to learn more and more after solving a problem.
+
+Main Steps:
+- Sign up or login to the website here https://solve-integrate.herokuapp.com/
+- Install the chrome extension, it is a very important task as the whole website is mainly serving the extension.
+- Now open any problem link on SPOJ/UVA/Live Archive/Code Forces.
+- The extension logo will turn into green within 10 seconds depending on your internet connection, and this marks that the extension has detected that this is a problem.
+- Click on the extension icon to find counters of solutions/hints/explanations/categories assosiated with this problem, you can add any of your own by clicking on the links.
+- When you try to submit your code through text submissions (file submissions are not supported yet), your code get's captured by the extension, and you'll get notified about it, and the extension will have a tag containing "code", when you click on the extension icon you'll be given the option to save the code publicly/privately.
+- You can also open the website and click on "Users" link at the top right to find users you know and then you can follow them, after following a user you'll find all the activities he does in your news feed.
+- Check out the "Hall of fame" link too, and get motivated to be at the top.
+- Also you may check out the "Help" link at the bottom right of the page, to know more about the scoring system.
+- Have fun and enjoy the features, and please use the feedback button at the bottom right of the website to tell me about any bugs you find, any features you hope to add, or any good/bad impressions you faced while using the website/extension.
+
+Beta Version: please don't spread it in a wide scale, as it is still Beta with lots of bugs, and heroku server quota might end, by the end of the beta version, this website will be migrated to another server (with all your data ... don't worry I tested that), and the extension will be on chrome store.
+
+Side Note: I published the beta now to help us during the world finals training, as the idea of (hints then explanations then solutions) was inspired by the WF training plan, So I hope this tool helps during the WF training.
