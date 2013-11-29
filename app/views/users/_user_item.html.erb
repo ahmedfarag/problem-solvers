@@ -5,7 +5,11 @@
   <%= gravatar_for user, size: 50 %>
 </a>
 <h1>
-  <%= link_to user.name, user_path(user) %>
+  <%= link_to user.name, user_path(user), style:"height: 50px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+width: 138px;text-align: left;" %>
 </h1>
 <div class="user_item_follow_container">
 <div class="follow_form follow_form_<%=user.id%>"><%= render :partial => "users/follow_form", object: user, as: :user  if signed_in? %></div>
