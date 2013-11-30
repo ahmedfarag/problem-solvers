@@ -1,6 +1,12 @@
 class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :reviewable, polymorphic: true
+
+  def self.sort_by_avg_rating(list)
+  	list.sort do |a, b|
+  		b.average_ratings <=> a.average_ratings
+  	end
+  end
 end
 # == Schema Information
 #

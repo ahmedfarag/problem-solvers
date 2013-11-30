@@ -4,7 +4,10 @@ class Problem < ActiveRecord::Base
   has_many :solutions
   has_many :explanations
   has_many :hints
-
+  alias :unsorted_hints :hints
+  alias :unsorted_explanations :explanations
+  alias :unsorted_solutions :solutions
+  
   has_many :category_relations, as: :categorizable
   has_many :categories, through: :category_relations
 
@@ -25,6 +28,26 @@ class Problem < ActiveRecord::Base
 
     solutions.select { |s| !s.private || s.user_id == user_id}  
   end
+
+
+  def hints
+    unsorted_hints.sort do |a, b|
+      b.average_ratings <=> a.average_ratings
+    end
+  end
+
+  def explanations
+    unsorted_explanations.sort do |a, b|
+      b.average_ratings <=> a.average_ratings
+    end
+  end
+
+  def solutions
+    unsorted_solutions.sort do |a, b|
+      b.average_ratings <=> a.average_ratings
+    end
+  end
+
 end
 # == Schema Information
 #
