@@ -1,6 +1,8 @@
 class Category < ActiveRecord::Base
 	has_many :category_relations
 	has_many :categorizables, through: :category_relations
+
+	default_scope order: 'categories.name ASC'
 end
 # == Schema Information
 #
