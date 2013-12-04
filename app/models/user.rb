@@ -13,6 +13,10 @@
 #
 
 class User < ActiveRecord::Base
+  HINTS_PEANLTY = 10
+  EXPLANATIONS_PENALTY = 30
+
+
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
   has_many :microposts, dependent: :destroy
@@ -41,8 +45,10 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :comments
   has_many :category_relations
+  has_many :unlocks
 
   has_one :score
+  has_one :available_time
   ##############
   
   def feed
@@ -89,6 +95,34 @@ class User < ActiveRecord::Base
     end
 
     return score.points
+  end
+
+  def can_take_action?()
+    if !available_time
+      return true
+    end
+
+    return available_time.time <= Time.now
+  end
+
+  def just_made_an_action(penalty_in_minutes)
+    if available_time
+      t = available_time
+      t.time = Time.now + penalty_in_minutes * 60
+      t.save
+    else
+      AvailableTime.create(time: (Time.now + penalty_in_minutes * 60), user_id: id)
+    end
+  end
+
+  def unlock(unlockable)
+    unlocks.create(unlockable: unlockable)
+    penalty = HINTS_PEANLTY
+    if unlockable.class == Explanation.class
+      penalty = EXPLANATIONS_PENALTY
+    end
+
+    just_made_an_action(penalty)
   end
 
   def public_solutions

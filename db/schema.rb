@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006183544) do
+ActiveRecord::Schema.define(:version => 20131204090411) do
+
+  create_table "available_times", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "available_times", ["user_id"], :name => "index_available_times_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -149,6 +158,17 @@ ActiveRecord::Schema.define(:version => 20131006183544) do
   add_index "solutions", ["language_id"], :name => "index_solutions_on_language_id"
   add_index "solutions", ["problem_id"], :name => "index_solutions_on_problem_id"
   add_index "solutions", ["user_id"], :name => "index_solutions_on_user_id"
+
+  create_table "unlocks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "unlockable_id"
+    t.string   "unlockable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "unlocks", ["unlockable_id"], :name => "index_unlocks_on_unlockable_id"
+  add_index "unlocks", ["user_id"], :name => "index_unlocks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
