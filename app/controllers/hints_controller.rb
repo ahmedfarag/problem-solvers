@@ -1,8 +1,10 @@
 class HintsController < ApplicationController
     before_filter :signed_in_user, 
-                only: [:edit, :update, :create, :new, :destroy] 
+                only: [:edit, :update, :create, :new, :destroy, :show] 
 
   before_filter :correct_user,   only: [:edit, :update, :destroy]
+
+  before_filter :unlocked_item, only: [:show]
   
  def new
     @hint = Hint.new(problem_id: params[:problem_id], user_id: current_user.id)
@@ -64,5 +66,15 @@ class HintsController < ApplicationController
     def correct_user
       @hint = current_user.hints.find_by_id(params[:id])
       redirect_to root_path if @hint.nil?
+    end
+
+    def unlocked_item
+      @unlockable = Hint.find(params[:id])
+      @unlockable.problem.solved_by?(current_user.id) or @unlockable.unlocked_by?(current_user.id)
+      # redirect_to root_path
+      # render do |format|            
+      #     format.html    
+      # end
+      render 'available_times/show'
     end
 end

@@ -1,0 +1,8 @@
+<% if current_user.can_take_action? %>
+	<h3>You can unlock hints, explanations, or solutions</h3>
+<% else %>
+	<h3>You'll be able to unlock hints, explanations, or solutions in <%= distance_of_time_in_words(current_user.available_time.time - Time.now)%>, please use this time to think about the problem using the previous data that you unlocked</h3>
+<% end %>
+<% if @unlockable %>
+	<h3>Found Unlockable</h3>
+<% end %>

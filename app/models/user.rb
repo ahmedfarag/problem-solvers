@@ -105,6 +105,7 @@ class User < ActiveRecord::Base
     return available_time.time <= Time.now
   end
 
+
   def just_made_an_action(penalty_in_minutes)
     if available_time
       t = available_time

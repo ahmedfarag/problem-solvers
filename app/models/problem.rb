@@ -48,6 +48,10 @@ class Problem < ActiveRecord::Base
     end
   end
 
+  def solved_by?(user_id)
+    unsorted_solutions.exists?(user_id: user_id)
+  end
+
 end
 # == Schema Information
 #

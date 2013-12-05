@@ -8,6 +8,10 @@ SampleApp::Application.routes.draw do
 
 
 
+  # get "unlocks/create"
+
+  # get "available_times/show"
+
   resources :users do
     member do
       get :following, :followers, :solutions, :hints, :explanations
@@ -34,6 +38,8 @@ SampleApp::Application.routes.draw do
   resources :category_relations, only: [:create, :new, :destroy]
   resources :languages, only: [:index]
   resources :solutions, only: [:show, :new, :create, :index, :destroy, :edit, :update]
+
+  resources :unlocks, only: [:create]
   
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
@@ -47,5 +53,7 @@ SampleApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/hall_of_fame', to: 'static_pages#hall_of_fame'
   match '/chrome_extension', to: 'static_pages#chrome_extension'
+
+  match '/state', to: 'available_times#show'
 
 end
