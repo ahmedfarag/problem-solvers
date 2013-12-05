@@ -5,6 +5,7 @@ class AvailableTimesController < ApplicationController
   def show
   	# @available_time = @AvailableTime.find(params[:id])
   	# # @unlockable = Unlock
+  	
   end
 
 

@@ -70,11 +70,8 @@ class HintsController < ApplicationController
 
     def unlocked_item
       @unlockable = Hint.find(params[:id])
-      @unlockable.problem.solved_by?(current_user.id) or @unlockable.unlocked_by?(current_user.id)
-      # redirect_to root_path
-      # render do |format|            
-      #     format.html    
-      # end
-      render 'available_times/show'
+      unless @unlockable.user_id == current_user.id or @unlockable.problem.solved_by?(current_user.id) or @unlockable.unlocked_by?(current_user.id)
+        render 'available_times/show'
+      end
     end
 end
