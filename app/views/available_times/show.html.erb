@@ -3,7 +3,7 @@
 <% else %>
 	<h3>You'll be able to unlock hints, explanations, or solutions in <%= distance_of_time_in_words(current_user.available_time.time - Time.now)%>, please use this time to think about the problem using the previous data that you've unlocked</h3>
 <% end %>
-<% if @unlockable %>
+<% if @unlockable and current_user.can_take_action? %>
 	<%= form_for(Unlock.new(unlockable: @unlockable, user_id: current_user.id)) do |f| %>
  		<%= render 'shared/error_messages', object: f.object %>
  		<%= f.hidden_field :user_id %>
