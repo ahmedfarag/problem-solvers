@@ -49,7 +49,10 @@ class Problem < ActiveRecord::Base
   end
 
   def solved_by?(user_id)
-    unsorted_solutions.exists?(user_id: user_id)
+    unsorted_solutions.find_all_by_user_id(user_id).each do |sol|
+      return true if sol.accepted
+    end
+    return false
   end
 
 end
