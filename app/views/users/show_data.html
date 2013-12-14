@@ -12,12 +12,13 @@
   </aside>
   <div class="span8">
     <h3><%= yield(:title) %></h3>
-    <% if @data.any? %>
-      <ul class="items_container">
-        <h3><%= @title %></h3>
-        <%= render @data %>
-      </ul>
-      <%= will_paginate @data %>
-    <% end %>
+
+      <% if @data.any? %>
+        <ul class="items_container">
+          <h3><%= @title %></h3>
+          <%= render @data %>
+        </ul>
+        <%= will_paginate @data %>
+      <% end %>
   </div>
 </div>

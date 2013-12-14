@@ -12,14 +12,20 @@
 	<!-- Google+ -->
 	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}#{problem_path(@problem)}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
 </div>
-<div class="items_container">
-	<h3>Categories</h3>
-	<%= @problem.category_relations.count > 0 ? (render @problem.category_relations) : "<p>&emsp;No Categories for this problem, be the first to add one ;)</p>".html_safe %>
-	<% if signed_in? %>
-	<hr class="special_hr"/>
-		<span class="item item_button" onclick="redirect_to('<%= new_category_relation_path categorizable: {categorizable_id: @problem.id,categorizable_type: @problem.class } %>')"><h2>Add Category</h2></span>
-	<% end %>
-</div>
+
+	<div class="items_container">
+		<h3>Categories</h3>
+		<% if @problem.solved_by? (current_user.id) %>
+			<%= @problem.category_relations.count > 0 ? (render @problem.category_relations) : "<p>&emsp;No Categories for this problem, be the first to add one ;)</p>".html_safe %>
+			<% if signed_in? %>
+			<hr class="special_hr"/>
+				<span class="item item_button" onclick="redirect_to('<%= new_category_relation_path categorizable: {categorizable_id: @problem.id,categorizable_type: @problem.class } %>')"><h2>Add Category</h2></span>
+			<% end %>
+		<% else %>
+			<%= "<p>&emsp;You cannot see those categories until you solve the problem, not to make your thought biased towards a certain solution.</p>".html_safe %> 
+		<%end%>
+	</div>
+
 <div  class="items_container">
 	<h3>Hints</h3>
 	<%= @problem.hints.count > 0 ? (render @problem.hints) : "<p>&emsp;No Hints for this problem, be the first to add one ;)</p>".html_safe %>

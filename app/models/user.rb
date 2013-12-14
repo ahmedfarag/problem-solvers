@@ -13,8 +13,6 @@
 #
 
 class User < ActiveRecord::Base
-  HINTS_PEANLTY = 10
-  EXPLANATIONS_PENALTY = 30
 
 
   attr_accessible :name, :email, :password, :password_confirmation
@@ -118,12 +116,9 @@ class User < ActiveRecord::Base
 
   def unlock(unlockable)
     unlocks.create(unlockable: unlockable)
-    penalty = HINTS_PEANLTY
-    if unlockable.class == Explanation.class
-      penalty = EXPLANATIONS_PENALTY
-    end
-
-    just_made_an_action(penalty)
+    penalty = unlockable.penalty
+    add_to_score(-penalty[:points])
+    just_made_an_action(penalty[:time])
   end
 
   def public_solutions

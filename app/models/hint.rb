@@ -15,6 +15,7 @@ class Hint < ActiveRecord::Base
   validates :problem_id, presence: true
   validates :user_id, presence: true
 
+  @cannot_unlock_message = ""
   def average_ratings
   	sum = 0
   	reviews.each do |rat|
@@ -29,6 +30,30 @@ class Hint < ActiveRecord::Base
 
   def unlocked_by?(user_id)
     unlockers.exists?(id: user_id)
+  end
+
+  def can_be_unlocked_by?(user_id)
+    @cannot_unlock_message = ""
+    if(User.find(user_id).points < penalty[:points])
+      @cannot_unlock_message = "You don't have enough points (#{penalty[:points]} points) to unlock this #{self.class.to_s.downcase}."
+      return false
+    end
+    true
+  end
+
+  def cannot_unlock_message
+    @cannot_unlock_message
+  end
+
+  def penalty
+    {time: 10, points: 20}
+  end
+
+  def available_for?(user_id)
+      unless self.user_id == user_id or self.problem.solved_by?(user_id) or self.unlocked_by?(user_id)
+        return false
+      end
+      true
   end
 end
 # == Schema Information

@@ -4,7 +4,8 @@ class SolutionsController < ApplicationController
 
   before_filter :correct_user,   only: [:edit, :update, :destroy]
   
-  
+  before_filter :unlocked_item, only: [:show]
+
   def index
     @solutions = Solution.find_all_by_user_id(current_user.id)
   end
@@ -99,5 +100,12 @@ class SolutionsController < ApplicationController
     def correct_user
       @solution = current_user.solutions.find_by_id(params[:id])
       redirect_to root_path if @solution.nil?
+    end
+
+    def unlocked_item
+      @unlockable = Solution.find(params[:id])
+      unless @unlockable.private or @unlockable.user_id == current_user.id or @unlockable.problem.solved_by?(current_user.id) or @unlockable.unlocked_by?(current_user.id)
+        render 'available_times/show'
+      end
     end
 end

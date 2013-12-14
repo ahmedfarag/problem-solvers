@@ -18,6 +18,10 @@ class Solution < ActiveRecord::Base
   validates :problem_id, presence: true
   validates :user_id, presence: true
 
+  has_many :unlocks, as: :unlockable
+  has_many :unlockers, through: :unlocks, source: :user
+
+  @cannot_unlock_message = ""
   def average_ratings
   	sum = 0
   	
@@ -29,6 +33,51 @@ class Solution < ActiveRecord::Base
   	n = reviews.count
   	avg = (sum/n.to_f).round if(n != 0)
   	avg
+  end
+
+  def unlocked_by?(user_id)
+    unlockers.exists?(id: user_id)
+  end
+
+  def can_be_unlocked_by?(user_id)
+    @cannot_unlock_message = ""
+
+    unlocked_all_hints = true
+    cur_user = User.find(user_id)
+    cur_user.hints.each do |hint|
+      unlocked_all_hints = (unlocked_all_hints and (hint.unlocked_by?(user_id) or hint.problem.solved_by?(user_id)))
+      break if not unlocked_all_hints
+    end
+
+    unlocked_all_explanations = true
+    cur_user.explanations.each do |explanation|
+      unlocked_all_explanations = (unlocked_all_explanations and (explanation.unlocked_by?(user_id) or explanation.problem.solved_by?(user_id)))
+      break if not unlocked_all_explanations
+    end
+
+    if not unlocked_all_hints
+      @cannot_unlock_message = "You have to unlock all hints before you can unlock any " + self.class.to_s.downcase
+    end
+
+    if not unlocked_all_explanations
+      @cannot_unlock_message += ", and y" if not @cannot_unlock_message.empty?
+      @cannot_unlock_message +=  (@cannot_unlock_message.empty? ? "Y" : "") + "ou have to unlock all explanations before you can unlock any " + self.class.to_s.downcase
+    end
+
+    if(User.find(user_id).points < penalty[:points])
+      @cannot_unlock_message += ", and y" if not @cannot_unlock_message.empty?
+      @cannot_unlock_message += (@cannot_unlock_message.empty? ? "Y" : "") + "ou don't have enough points (#{penalty[:points]} points) to unlock this #{self.class.to_s.downcase}."
+      return false
+    end
+    unlocked_all_hints and unlocked_all_explanations
+  end
+
+  def cannot_unlock_message
+    @cannot_unlock_message
+  end
+
+  def penalty
+    {time: 30, points: 150}
   end
 
  

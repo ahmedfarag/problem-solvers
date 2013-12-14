@@ -4,6 +4,7 @@ class ExplanationsController < ApplicationController
 
   before_filter :correct_user,   only: [:edit, :update, :destroy]
   
+  before_filter :unlocked_item, only: [:show]
                 
   def index
     @explanations = Explanation.all
@@ -69,5 +70,12 @@ class ExplanationsController < ApplicationController
     def correct_user
       @explanation = current_user.explanations.find_by_id(params[:id])
       redirect_to root_path if @explanation.nil?
+    end
+
+    def unlocked_item
+      @unlockable = Explanation.find(params[:id])
+      unless @unlockable.user_id == current_user.id or @unlockable.problem.solved_by?(current_user.id) or @unlockable.unlocked_by?(current_user.id)
+        render 'available_times/show'
+      end
     end
 end

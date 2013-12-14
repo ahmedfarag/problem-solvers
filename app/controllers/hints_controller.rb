@@ -55,6 +55,8 @@ class HintsController < ApplicationController
     redirect_to hints_user_path(current_user)
   end
 
+ 
+
   private
     def signed_in_user
       unless signed_in?

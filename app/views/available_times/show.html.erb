@@ -1,17 +1,26 @@
-<% if current_user.can_take_action? %>
-	<h3>You can unlock hints, explanations, or solutions</h3>
+<h1>Did you try your best, yet?</h1>
+
+<p>This <%= @unlockable.class.to_s %> is locked because you didn't solve its problem yet.</p>
+<p>This is made to ensure that you've tried your best before asking for help.</p>
+
+
+<% if @unlockable.can_be_unlocked_by?(current_user.id) %>
+	<% if current_user.can_take_action? %>
+		<p>You can unlock this <%= @unlockable.class.to_s %> by paying <%= "#{@unlockable.penalty[:points]} points, and waiting #{@unlockable.penalty[:time]} minutes until your next unlock action."%></p>
+		<%= form_for(Unlock.new(unlockable: @unlockable, user_id: current_user.id)) do |f| %>
+	 		<%= render 'shared/error_messages', object: f.object %>
+	 		<%= f.hidden_field :user_id %>
+	 		<%= f.hidden_field :unlockable_id %>
+	 		<%= f.hidden_field :unlockable_type %>
+	 		<%= f.submit "Unlock", class: "btn btn-large btn-primary" %>
+
+	 	<% end %>
+	<% else %>
+		<p>You'll be able to unlock this <%= @unlockable.class.to_s %> in <strong><%= distance_of_time_in_words(current_user.available_time.time - Time.now)%></strong>, please invest this time to think about the problem using the previous data that you've already unlocked.</p>
+	<% end %>	
+
 <% else %>
-	<h3>You'll be able to unlock hints, explanations, or solutions in <%= distance_of_time_in_words(current_user.available_time.time - Time.now)%>, please use this time to think about the problem using the previous data that you've unlocked</h3>
+	<p><%= @unlockable.cannot_unlock_message %></p>
 <% end %>
-<% if @unlockable and current_user.can_take_action? %>
-	<%= form_for(Unlock.new(unlockable: @unlockable, user_id: current_user.id)) do |f| %>
- 		<%= render 'shared/error_messages', object: f.object %>
- 		<%= f.hidden_field :user_id %>
- 		<%= f.hidden_field :unlockable_id %>
- 		<%= f.hidden_field :unlockable_type %>
- 		<%= f.submit "Unlock", class: "btn btn-large btn-primary" %>
-
- 	<% end %>
-	<h3>Found Unlockable</h3>
-<% end %>
-
+<br>
+<p>For more details about the system, check out the <%= link_to "help", help_path %> page</p>

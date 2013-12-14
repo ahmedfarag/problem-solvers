@@ -54,6 +54,6 @@ SampleApp::Application.routes.draw do
   match '/hall_of_fame', to: 'static_pages#hall_of_fame'
   match '/chrome_extension', to: 'static_pages#chrome_extension'
 
-  match '/state', to: 'available_times#show'
+  # match '/state', to: 'available_times#show'
 
 end

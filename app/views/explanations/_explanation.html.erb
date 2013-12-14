@@ -22,6 +22,11 @@
 	    <%= link_to image_tag(asset_path("edit-icon.png")), edit_explanation_path(explanation), title:"Edit"%>
 	  <% end %>
 	</div>
+<% if explanation.available_for?(current_user.id) %>
+	<i class="foundicon-unlock" style="color:green;float:right;margin-top:17px;font-size:32px;margin-left:4px;margin-right:4px;" title="Unlocked"></i>
+<% else %>
+	<i class="foundicon-lock" style="color:grey;float:right;margin-top:17px;font-size:32px;margin-left:4px;margin-right:4px;" title="Locked"></i>
+<% end %>
 
 <h2><%= link_to "Explanation", explanation_path(explanation) , style:"float:none"%> for <%= link_to explanation.problem.name.first(16) + (explanation.problem.name.length > 16 ? "..." : "") , problem_path(explanation.problem), style:"float:none" %></h2>
 
@@ -35,6 +40,7 @@
 	</div>
 
 </div>
+
 
 
 <% if  explanation.average_ratings > 0 %>

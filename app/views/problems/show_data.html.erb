@@ -2,7 +2,14 @@
     <% if @data.any? %>
       <ul class="items_container">
         <h3><%= @title %> <%= link_to(@problem.name, problem_path(@problem), style:"color:#999999;")%></h3>
-        <%= render @data %>
+        <% if @title == "Categories for " and not @problem.solved_by?(current_user.id) %>
+      		<%= "<p>&emsp;You cannot see those categories until you solve the problem, not to make your thought biased towards a certain solution.</p>".html_safe %> 
+		<% else %>
+        	<%= render @data %>
+        <% end %>
       </ul>
-      <%= will_paginate @data %>
-      <% end %>
+      <% if @title != "Categories for " or @problem.solved_by?(current_user.id) %>
+      	<%= will_paginate @data %>
+      <%end%>
+   <% end %>
+

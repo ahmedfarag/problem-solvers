@@ -34,7 +34,12 @@
 	    <a class="not-colored" id="avg_hint_<%=hint.id%>_4"></a>
 	    <a class="not-colored" id="avg_hint_<%=hint.id%>_5"></a>
 	</div>
-<i class="foundicon-graph", style="opacity:<%=hint.clarity * 0.2 + 0.2%>;color:red;float:right;margin-top:17px;font-size:32px;margin-left:4px;margin-right:4px;" title="<%= @clarity[hint.clarity] %>"></i>
+<i class="foundicon-graph" style="opacity:<%=hint.clarity * 0.2 + 0.2%>;color:red;float:right;margin-top:17px;font-size:32px;margin-left:4px;margin-right:4px;" title="<%= @clarity[hint.clarity] %>"></i>
+<% if hint.available_for?(current_user.id) %>
+	<i class="foundicon-unlock" style="color:green;float:right;margin-top:17px;font-size:32px;margin-left:4px;margin-right:4px;" title="Unlocked"></i>
+<% else %>
+	<i class="foundicon-lock" style="color:grey;float:right;margin-top:17px;font-size:32px;margin-left:4px;margin-right:4px;" title="Locked"></i>
+<% end %>
 	
 </div>
 
