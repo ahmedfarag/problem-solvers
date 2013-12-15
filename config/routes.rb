@@ -40,6 +40,7 @@ SampleApp::Application.routes.draw do
   resources :solutions, only: [:show, :new, :create, :index, :destroy, :edit, :update]
 
   resources :unlocks, only: [:create]
+  # resources :public_links, only: [:show]
   
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
@@ -53,6 +54,7 @@ SampleApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/hall_of_fame', to: 'static_pages#hall_of_fame'
   match '/chrome_extension', to: 'static_pages#chrome_extension'
+  match '/public_links', to: 'public_links#show'
 
   # match '/state', to: 'available_times#show'
 

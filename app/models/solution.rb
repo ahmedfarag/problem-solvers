@@ -21,6 +21,17 @@ class Solution < ActiveRecord::Base
   has_many :unlocks, as: :unlockable
   has_many :unlockers, through: :unlocks, source: :user
 
+  has_one :public_link, as: :unlockable
+  after_commit :create_public_link
+
+  def create_public_link
+    PublicLink.create(unlockable: self) if not PublicLink.exists?(unlockable_id: self, unlockable_type: self.class.to_s)
+  end
+
+  def public_url
+    Rails.application.routes.url_helpers.public_links_path + "?h=#{public_link.hashed_id}"
+  end
+
   @cannot_unlock_message = ""
   def average_ratings
   	sum = 0

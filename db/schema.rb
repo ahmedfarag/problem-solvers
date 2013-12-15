@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131204090411) do
+ActiveRecord::Schema.define(:version => 20131215090958) do
 
   create_table "available_times", :force => true do |t|
     t.integer  "user_id"
@@ -111,6 +111,16 @@ ActiveRecord::Schema.define(:version => 20131204090411) do
 
   add_index "problems", ["link"], :name => "index_problems_on_link", :unique => true
   add_index "problems", ["online_judge_id"], :name => "index_problems_on_online_judge_id"
+
+  create_table "public_links", :force => true do |t|
+    t.integer  "unlockable_id"
+    t.string   "unlockable_type"
+    t.string   "hashed_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "public_links", ["unlockable_id"], :name => "index_public_links_on_unlockable_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
