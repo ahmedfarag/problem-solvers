@@ -10,20 +10,20 @@
 	    <%= link_to image_tag(asset_path("edit-icon.png")), edit_solution_path(@solution), title:"Edit"%>
 	  <% end %>
 	</div>
-<h1><%= link_to "Solution", solution_path(@solution) %> for <%= link_to "#{@solution.problem.name}", problem_path(@solution.problem) %></h1>
+<h1><%= link_to "Solution", @solution.public_url %> for <%= link_to "#{@solution.problem.name}", problem_path(@solution.problem) %></h1>
 
 
 <h2>by <%= link_to "#{@solution.user.name}", user_path(@solution.user) %></h2>
 <% if !@solution.private %>
 <div id="share-buttons"  style="display:block;margin:0 auto 0 auto;">
 	<!-- Facebook -->
-	<a href="http://www.facebook.com/sharer.php?u=<%="#{request.protocol}#{request.host}#{solution_path(@solution)}"%>" target="_blank"><img src="<%=asset_path("facebook.png")%>" alt="Facebook" /></a>
+	<a href="http://www.facebook.com/sharer.php?u=<%="#{request.protocol}#{request.host}#{@solution.public_url}"%>" target="_blank"><img src="<%=asset_path("facebook.png")%>" alt="Facebook" /></a>
 	 
 	<!-- Twitter -->
-	<a href="http://twitter.com/share?url=<%="#{request.protocol}#{request.host}#{solution_path(@solution)}"%>&text=<%="Check out this solution "%>" target="_blank"><img src="<%=asset_path("twitter.png")%>" alt="Twitter" /></a>
+	<a href="http://twitter.com/share?url=<%="#{request.protocol}#{request.host}#{@solution.public_url}"%>&text=<%="Check out this solution "%>" target="_blank"><img src="<%=asset_path("twitter.png")%>" alt="Twitter" /></a>
 	 
 	<!-- Google+ -->
-	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}#{solution_path(@solution)}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
+	<a href="https://plus.google.com/share?url=<%="#{request.protocol}#{request.host}#{@solution.public_url}"%>" target="_blank"><img src="<%=asset_path("google.png")%>" alt="Google" /></a>
 </div>
 <% end %>
 <h3>Written in <%= @solution.language.name %></h3>
@@ -42,11 +42,12 @@
 <span  id="reviews_cnt" style="line-height:25px;margin-left:6px;"></span>
 <% if @solution.private %>
 <p class="wrong_answer_color">This solution is private</p>
-	<%= form_for(@solution) do |f| %>
-		<%= f.hidden_field :private, value:false  %>
-		<%= f.label "Get 50 points for making it public"%>
-	  <%= f.submit "Make public", :class => "btn btn-large btn-primary" %>
-	  
+	<% if @solution.user == current_user %>
+		<%= form_for(@solution) do |f| %>
+			<%= f.hidden_field :private, value:false  %>
+			<%= f.label "Get 50 points for making it public"%>
+		  <%= f.submit "Make public", :class => "btn btn-large btn-primary" %>
+	 	<%end%>
 	<% end %>
 <% else %>
 <p class="accepted_color">This solution is public</p>

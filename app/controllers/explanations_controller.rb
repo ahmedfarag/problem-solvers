@@ -16,7 +16,7 @@ class ExplanationsController < ApplicationController
 
   def new
     @problem = Problem.find(params[:problem_id])
-    @explanation = @problem.explanations.build(user_id: current_user.id)
+    @explanation = @problem.unsorted_explanations.build(user_id: current_user.id)
   end
 
   def create
