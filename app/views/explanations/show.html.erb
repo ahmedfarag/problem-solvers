@@ -50,7 +50,7 @@
         <a class="not-colored" onclick="rateIt(this)" id="<%= @explanation.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
     </div>
 <% end %>
-<div style="float:left;clear:both;"  class="fb-comments" data-href="<%= "#{request.protocol}#{request.host}:#{request.port}#{explanation_path(@explanation)}" %>" data-width="940px" data-num-posts="10"></div>
+<div style="float:left;clear:both;"  class="fb-comments" data-href="<%= "#{request.protocol}#{request.host}#{explanation_path(@explanation)}" %>" data-width="940px" data-num-posts="10"></div>
 
 
 <% if signed_in? %>

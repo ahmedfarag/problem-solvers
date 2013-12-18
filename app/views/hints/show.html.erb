@@ -46,7 +46,7 @@
 	    <a class="not-colored" onclick="rateIt(this)" id="<%= @hint.id %>_5" title="Awesome" onmouseover="rating(this)" onmouseout="off(this)"></a>
 	</div>
 <% end %>	
-<div style="float:left;clear:both;" class="fb-comments" data-href="<%= "#{request.protocol}#{request.host}:#{request.port}#{hint_path(@hint)}"%>" data-width="940px" data-num-posts="10"></div>
+<div style="float:left;clear:both;" class="fb-comments" data-href="<%= "#{request.protocol}#{request.host}#{hint_path(@hint)}"%>" data-width="940px" data-num-posts="10"></div>
 
 <% if signed_in? %>
 	<%= form_for(@hint.reviews.build(user:current_user),remote: true, :html => {id: "rating_form_#{@hint.id}", style:"margin-bottom:0px;"}) do |f| %>
